@@ -1,0 +1,33 @@
+{
+  "name": "geek-ui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "lint:es": "eslint ./src --ext .ts,.vue --fix",
+    "lint:style": "stylelint src/**/*.{css,less,scss,jsx} --fix",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "dependencies": {
+    "vue": "^3.2.37"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.4",
+    "@geektech/commitlint-config": "^0.0.2",
+    "@geektech/eslint-plugin": "^1.0.3",
+    "@geektech/stylelint-config": "^0.0.6",
+    "@vitejs/plugin-vue": "^3.0.0",
+    "eslint": "^8.36.0",
+    "husky": "^8.0.3",
+    "stylelint": "^15.3.0",
+    "typescript": "^4.6.4",
+    "vite": "^3.0.0",
+    "vitepress": "1.0.0-alpha.61",
+    "vue-tsc": "^0.38.4"
+  }
+}
