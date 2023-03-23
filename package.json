@@ -11,7 +11,8 @@
     "lint:style": "stylelint src/**/*.{css,less,scss,jsx} --fix",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "prepare": "husky install"
   },
   "dependencies": {
     "vue": "^3.2.37"
