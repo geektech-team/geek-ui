@@ -4,7 +4,7 @@ module.exports = {
   // 使用单引号, 默认false(在jsx中配置无效, 默认都是双引号)
   singleQuote: true,
   // 分号
-  semi: false,
+  semi: true,
   // 尾部逗号
   trailingComma: 'es5',
   printWidth: 120,

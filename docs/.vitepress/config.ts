@@ -16,13 +16,17 @@ export default defineConfig({
         text: 'Examples',
         items: [
           { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Runtime API Examples', link: '/api-examples' },
+          { text: 'Button', link: '/components/button' },
         ]
       }
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/geektech-team/geek-ui' }
     ]
+  },
+  markdown: {
+    lineNumbers: true
   }
 })
