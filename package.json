@@ -8,6 +8,7 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "lint-staged": "lint-staged",
+    "prettier": "prettier --write \"src/**/*.ts\" \"src/**/*.vue\"",
     "lint:es": "eslint ./src --ext .ts,.vue --fix",
     "lint:style": "stylelint src/**/*.{css,less,scss,jsx} --fix --custom-syntax postcss-less",
     "docs:dev": "vitepress dev docs",

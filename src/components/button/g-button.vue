@@ -13,7 +13,7 @@ defineProps<{ type: string }>();
 </template>
 
 <style lang="less">
-@import "./../../style/theme/default.less";
+@import './../../style/theme/default.less';
 @COMPONENT: ~'@{prefix}-button';
 .@{COMPONENT} {
   padding: 0 5px;
