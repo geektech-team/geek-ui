@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm run lint:es
-npm run lint:style
+# npm run lint:es
+# npm run lint:style
+npm run lint-staged
