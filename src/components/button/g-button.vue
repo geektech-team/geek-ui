@@ -3,11 +3,11 @@ import { defineProps } from 'vue';
 
 const COMPONENT = 'g-button';
 
-defineProps<{ type: string }>();
+defineProps<{ type: 'primary' | 'disabled' }>();
 </script>
 
 <template>
-  <button :class="[COMPONENT, `${COMPONENT}-${type || 'normal'}`]">
+  <button :class="[COMPONENT, `${COMPONENT}-${type || 'normal'}`]" :disabled="type === 'disabled'">
     <slot />
   </button>
 </template>
