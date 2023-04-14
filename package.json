@@ -36,5 +36,16 @@
     "vite": "^3.0.0",
     "vitepress": "1.0.0-alpha.61",
     "vue-tsc": "^0.38.4"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,vue,css,less,json,md}": [
+      "prettier --write"
+    ],
+    "*.{js,ts,tsx,vue}": [
+      "eslint --fix"
+    ],
+    "*.{css,less}": [
+      "stylelint --fix --custom-syntax postcss-less"
+    ]
   }
 }
