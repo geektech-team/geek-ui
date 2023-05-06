@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <font id="g-icon" horiz-adv-x="200">
+    <font-face font-family="g-icon"
+      units-per-em="200" ascent="200"
+      descent="0" />
+    <missing-glyph horiz-adv-x="0" />
+    <glyph glyph-name="close"
+      unicode="&#xEA01;"
+      horiz-adv-x="200" d="M58.8333333984375 158.8333333984375A12.5 12.5 0 1 1 41.1666666015625 141.1666666015625L82.3166666015625 100L41.15 58.8333333984375A12.5 12.5 0 0 1 58.8333333984375 41.1666666015625L100 82.3166666015625L141.1666666015625 41.15A12.5 12.5 0 0 1 158.8333333984375 58.8333333984375L117.6833333984375 100L158.85 141.1666666015625A12.5 12.5 0 0 1 141.1666666015625 158.8333333984375L100 117.6833333984375L58.8333333984375 158.85z" />
+  </font>
+</defs>
+</svg>

@@ -14,7 +14,8 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "gen:icon": "svg2icon"
   },
   "dependencies": {
     "vue": "^3.2.37"
@@ -24,6 +25,7 @@
     "@geektech/commitlint-config": "^0.0.2",
     "@geektech/eslint-plugin": "^1.0.3",
     "@geektech/stylelint-config": "^0.0.6",
+    "@geektech/svg2icon": "^1.0.6",
     "@vitejs/plugin-vue": "^3.0.0",
     "eslint": "^8.36.0",
     "husky": "^8.0.3",

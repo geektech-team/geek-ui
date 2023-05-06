@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'g-icon';
+  src: url('./g-icon.eot?t=1683361026201#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */ url('./g-icon.woff?t=1683361026201') format('woff'),
+    url('./g-icon.woff2?t=1683361026201') format('woff2'), url('./g-icon.ttf?t=1683361026201') format('truetype'),
+    /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/ url('./g-icon.svg?t=1683361026201#g-icon') format('svg'); /* iOS 4.1- */
+}
+
+[class^='g-icon-'],
+[class*=' g-icon-'] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'g-icon' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: baseline;
+  display: inline-block;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.g-icon-close:before {
+  content: '\ea01';
+}

@@ -3,11 +3,11 @@ import { defineProps } from 'vue';
 
 const COMPONENT = 'g-button';
 
-defineProps<{ type: 'primary' | 'disabled' }>();
+defineProps<{ type: 'primary' | 'normal'; disabled: boolean }>();
 </script>
 
 <template>
-  <button :class="[COMPONENT, `${COMPONENT}-${type || 'normal'}`]" :disabled="type === 'disabled'">
+  <button :class="[COMPONENT, `${COMPONENT}-${type || 'normal'}`]" :disabled="disabled">
     <slot />
   </button>
 </template>
@@ -18,7 +18,7 @@ defineProps<{ type: 'primary' | 'disabled' }>();
 .@{COMPONENT} {
   padding: 0 5px;
   border-radius: 5px;
-  &-disabled {
+  &[disabled] {
     color: @primary-color;
     background-color: #f5f5f5;
     border-color: #d9d9d9;
