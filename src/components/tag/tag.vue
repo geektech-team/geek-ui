@@ -7,6 +7,7 @@ const COMPONENT = 'g-tag';
 const emit = defineEmits(['close']);
 
 defineProps<{
+  bordered: boolean;
   disabled: boolean;
   closable: boolean;
 }>();
@@ -33,6 +34,8 @@ const handleClose = ev => {
   border-radius: 5px;
   display: inline-flex;
   align-items: center;
+  border-color: transparent;
+  background-color: @gray-2;
   &-disabled {
     color: @primary-color;
     background-color: #f5f5f5;

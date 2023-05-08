@@ -27,6 +27,9 @@ defineProps<{ type: 'primary' | 'normal'; disabled: boolean }>();
     color: #fff;
     background-color: @primary-color;
     border-color: #1890ff;
+    &:hover {
+      background-color: @primary-dark;
+    }
   }
 }
 </style>
