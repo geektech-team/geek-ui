@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
-
 const COMPONENT = 'g-button';
 
-defineProps<{ type: 'primary' | 'normal'; disabled: boolean }>();
+defineProps<{ type?: 'primary' | 'normal'; disabled?: boolean }>();
 </script>
 
 <template>

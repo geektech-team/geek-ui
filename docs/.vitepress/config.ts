@@ -19,6 +19,7 @@ export default defineConfig({
           { text: 'Tag', link: '/components/tag' },
           { text: 'Icon', link: '/components/icon' },
           { text: 'Scrollbar Box', link: '/components/scrollbar-box' },
+          { text: 'Carousel', link: '/components/carousel' },
         ],
       },
       {

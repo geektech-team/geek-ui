@@ -15,7 +15,10 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "prepare": "husky install",
-    "gen:icon": "svg2icon"
+    "gen:icon": "svg2icon",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "vue": "^3.2.37"
@@ -26,9 +29,14 @@
     "@geektech/eslint-plugin": "^1.0.3",
     "@geektech/stylelint-config": "^0.0.6",
     "@geektech/svg2icon": "^1.0.6",
+    "@geektech/utils": "^1.0.1",
     "@vitejs/plugin-vue": "^3.0.0",
+    "@vitest/coverage-c8": "^0.31.1",
+    "@vitest/ui": "^0.31.1",
+    "@vue/test-utils": "^2.3.2",
     "eslint": "^8.36.0",
     "husky": "^8.0.3",
+    "jsdom": "^22.0.0",
     "less": "^4.1.3",
     "lint-staged": "^13.2.1",
     "postcss-less": "^6.0.0",
@@ -37,6 +45,7 @@
     "typescript": "^4.6.4",
     "vite": "^3.0.0",
     "vitepress": "1.0.0-alpha.61",
+    "vitest": "^0.31.1",
     "vue-tsc": "^0.38.4"
   },
   "lint-staged": {

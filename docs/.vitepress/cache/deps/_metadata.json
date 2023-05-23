@@ -1,11 +1,17 @@
 {
-  "hash": "b9cacc5d",
-  "browserHash": "3b242e16",
+  "hash": "8ead107f",
+  "browserHash": "65e63e08",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/.pnpm/vue@3.2.47/node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "79a6f035",
+      "fileHash": "52bebb71",
+      "needsInterop": false
+    },
+    "@geektech/utils": {
+      "src": "../../../../node_modules/.pnpm/@geektech+utils@1.0.1/node_modules/@geektech/utils/dist/index.es.js",
+      "file": "@geektech_utils.js",
+      "fileHash": "38eedebe",
       "needsInterop": false
     }
   },

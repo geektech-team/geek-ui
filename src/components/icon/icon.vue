@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
-
 const COMPONENT = 'g-icon';
 
 defineProps<{ name: 'close' | 'disabled' }>();
