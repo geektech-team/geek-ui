@@ -4,11 +4,11 @@ import { describe, expect, it } from 'vitest';
 import { Button } from './index';
 
 describe('Button', () => {
-  const wrapper = mount(Button, { props: { type: 'primary' }, slots: { default: '注册' } });
+  const wrapper = mount(Button, { props: { type: 'primary' }, slots: { default: 'Primary' } });
   it('render', () => {
     expect(wrapper).toBeTruthy();
   });
   it('renders slots', () => {
-    expect(wrapper.text()).toContain('注册');
+    expect(wrapper.text()).toContain('Primary');
   });
 });
