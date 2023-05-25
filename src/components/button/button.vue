@@ -5,7 +5,7 @@ defineProps<{ type?: 'primary' | 'normal'; disabled?: boolean }>();
 </script>
 
 <template>
-  <button :class="[COMPONENT, `${COMPONENT}-${type || 'normal'}`]" :disabled="disabled">
+  <button :class="[COMPONENT, `${COMPONENT}-${type || (disabled ? 'disabled' : 'normal')}`]" :disabled="disabled">
     <slot />
   </button>
 </template>
@@ -14,7 +14,7 @@ defineProps<{ type?: 'primary' | 'normal'; disabled?: boolean }>();
 @import './../../style/theme/default.less';
 @COMPONENT: ~'@{prefix}-button';
 .@{COMPONENT} {
-  padding: 0 5px;
+  padding: 2px 10px;
   border-radius: 5px;
   &[disabled] {
     color: @primary-color;

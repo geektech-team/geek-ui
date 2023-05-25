@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const COMPONENT = 'g-icon';
 
-defineProps<{ name: 'close' | 'disabled' }>();
+defineProps<{ name: 'close' | 'disabled'; rotate: number }>();
 </script>
 
 <template>

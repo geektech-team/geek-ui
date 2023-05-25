@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'g-icon';
-  src: url('./g-icon.eot?t=1683361026201#iefix') format('embedded-opentype'),
-    /* IE6-IE8 */ url('./g-icon.woff?t=1683361026201') format('woff'),
-    url('./g-icon.woff2?t=1683361026201') format('woff2'), url('./g-icon.ttf?t=1683361026201') format('truetype'),
-    /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/ url('./g-icon.svg?t=1683361026201#g-icon') format('svg'); /* iOS 4.1- */
+  src: url('./g-icon.eot?t=1684995108098#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */ url('./g-icon.woff?t=1684995108098') format('woff'),
+    url('./g-icon.woff2?t=1684995108098') format('woff2'), url('./g-icon.ttf?t=1684995108098') format('truetype'),
+    /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/ url('./g-icon.svg?t=1684995108098#g-icon') format('svg'); /* iOS 4.1- */
 }
 
 [class^='g-icon-'],
@@ -24,4 +24,10 @@
 
 .g-icon-close:before {
   content: '\ea01';
+}
+.g-icon-left:before {
+  content: '\ea02';
+}
+.g-icon-right:before {
+  content: '\ea03';
 }

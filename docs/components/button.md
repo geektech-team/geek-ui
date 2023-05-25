@@ -3,7 +3,8 @@
 ## Demo
 
 <script setup>
-import GButton from '../../src/components/button/button.vue'
+// import GButton from '../../src/components/button/button.vue'
+import { GButton } from '../../src/components/button/index';
 </script>
 
 <g-button>normal</g-button><br><br>

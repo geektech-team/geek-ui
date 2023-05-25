@@ -1,14 +1,14 @@
 // // 引入测试相关依赖
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
-import { Button } from './index';
+import { GButton } from './index';
 
-describe('Button', () => {
-  const wrapper = mount(Button, { props: { type: 'primary' }, slots: { default: 'Primary' } });
+describe('GButton', () => {
+  const primaryWrapper = mount(GButton, { props: { type: 'primary' }, slots: { default: 'Primary' } });
   it('render', () => {
-    expect(wrapper).toBeTruthy();
+    expect(primaryWrapper).toBeTruthy();
   });
   it('renders slots', () => {
-    expect(wrapper.text()).toContain('Primary');
+    expect(primaryWrapper.text()).toContain('Primary');
   });
 });
