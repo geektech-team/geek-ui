@@ -11,7 +11,7 @@ export { GScrollbarBox };
 
 // 内部统一注册
 export default {
-  title: 'GScrollbarBox 按钮',
+  title: 'GScrollbarBox',
   category: '数据展示',
   status: '100%',
   install (app: App): void {

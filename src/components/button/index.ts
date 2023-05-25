@@ -11,7 +11,7 @@ export { GButton };
 
 // 内部统一注册
 export default {
-  title: 'GButton 按钮',
+  title: 'GButton',
   category: '数据展示',
   status: '100%',
   install (app: App): void {

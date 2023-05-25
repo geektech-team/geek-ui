@@ -11,7 +11,7 @@ export { GPagination };
 
 // 内部统一注册
 export default {
-  title: 'GPagination 按钮',
+  title: 'GPagination',
   category: '数据展示',
   status: '100%',
   install (app: App): void {

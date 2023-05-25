@@ -3,6 +3,10 @@ export const paginationProps = {
     type: Number,
     default: 1,
   },
+  jumper: {
+    type: Boolean,
+    default: false,
+  },
   pageSize: {
     type: Number,
     default: 10,

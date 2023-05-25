@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { defineEmits, computed, ref, shallowRef } from 'vue';
+import { defineEmits, computed, ref } from 'vue';
 import { paginationProps, paginationEmit } from './pagination';
 import GIcon from '../icon/icon.vue';
 import GButton from '../button/button.vue';
 
 const COMPONENT = 'g-pagination';
 
-type pageItem = { index: number; isMore: boolean; isCurrent: boolean; class: string };
+// const ELLIPSIS_BOUNDARY = 5;
+type pageItem = { page: number; isMore: boolean; isCurrent: boolean };
 
 const props = defineProps(paginationProps);
 const emit = defineEmits(paginationEmit);
@@ -16,58 +17,23 @@ const pageLength = computed(() => {
   return Math.ceil(props.total / props.pageSize);
 });
 const jumpToNum = ref();
-
-const left = shallowRef<HTMLInputElement>();
-const right = shallowRef<HTMLInputElement>();
-const _refLeft = computed(() => left.value);
-const _refRight = computed(() => right.value);
-/**
- * 3种形态
- *  1. 无省略号，len <= 4，current = 1 ~ 4
- *  2. 有一个省略号，page > 4，current = 1 | 2 | len - 1 | len
- *  3. 两个省略号，page > 4，len - current >= 2，current - 1 >= 2
- */
 const pagers = computed(() => {
   const arr: pageItem[] = [];
-
-  // 从current位置向左扩散
-  for (let i = currentPage.value; i >= 1; i--) {
-    // 终结条件：
-    if (i === currentPage.value - 4 || i === 0) {
-      break;
+  for (let current = 1; current <= pageLength.value; current++) {
+    let isMore = false;
+    if (![1, pageLength.value].includes(current)) {
+      if (current < currentPage.value - 3 || current > currentPage.value + 3) {
+        continue;
+      } else if ([currentPage.value - 3, currentPage.value + 3].includes(current)) {
+        isMore = true;
+      }
     }
-    const isOne = i === currentPage.value - 3 && i > 0;
-    arr.unshift({
-      index: isOne ? 1 : i,
-      isMore: i === currentPage.value - 2,
-      isCurrent: i === currentPage.value,
-      class: i === currentPage.value ? 'paging-item--current' : '',
-    });
-  }
-  // 从current向右扩散
-  for (let i = currentPage.value + 1; i <= pageLength.value; i++) {
-    // 终结条件：超出最大长度或者还有更多
-    if (i === currentPage.value + 4 || i === pageLength.value + 1) {
-      break;
-    }
-    const isLast = i === currentPage.value + 3 && i < pageLength.value;
     arr.push({
-      index: isLast ? pageLength.value : i,
-      isMore: i === currentPage.value + 2,
-      isCurrent: i === currentPage.value,
-      class: i === currentPage.value ? 'paging-item--current' : '',
+      page: current,
+      isMore,
+      isCurrent: current === currentPage.value,
     });
   }
-  // 特别情况处理(为了在选择最开始/最末尾的时候有3个)
-  if (pageLength.value > 4 && (currentPage.value === 1 || currentPage.value === pageLength.value)) {
-    arr.splice(2, 0, {
-      index: currentPage.value === 1 ? 3 : pageLength.value - 2,
-      isMore: false,
-      isCurrent: false,
-      class: '',
-    });
-  }
-
   return arr;
 });
 
@@ -75,42 +41,23 @@ const change = (item: pageItem) => {
   if (item.isCurrent) {
     return;
   }
-  currentPage.value = item.index;
+  currentPage.value = item.page;
   emit('change', currentPage.value);
 };
 
 const last = (e: MouseEvent) => {
-  const currentTarget = e.currentTarget as HTMLDivElement;
-  if (currentPage.value === 1) {
-    // 设置左箭头非活性
-    if (!currentTarget.getAttribute('class')?.includes('paging-item--disabled')) {
-      currentTarget.setAttribute('class', currentTarget.getAttribute('class') + ' paging-item--disabled');
-    }
+  if (currentPage.value <= 1) {
     return;
   }
-  // 移除右箭头非活性
-  if (_refRight.value?.getAttribute('class')?.includes('paging-item--disabled')) {
-    _refRight.value.setAttribute('class', currentTarget.getAttribute('class') || '');
-  }
-  currentPage.value -= 1;
+  currentPage.value--;
   emit('change', currentPage.value);
 };
 
 const next = (e: MouseEvent) => {
-  const currentTarget = e.currentTarget as HTMLDivElement;
-  if (currentPage.value === pageLength.value) {
-    // 设置右箭头非活性
-    if (currentTarget.getAttribute('class')?.includes('paging-item--disabled')) {
-      currentTarget.setAttribute('class', currentTarget.getAttribute('class') + ' paging-item--disabled');
-    }
+  if (currentPage.value >= pageLength.value) {
     return;
   }
-  // 移除右箭头非活性
-  if (_refLeft.value?.getAttribute('class')?.includes('paging-item--disabled')) {
-    _refLeft.value.setAttribute('class', currentTarget.getAttribute('class') || '');
-  }
-  // 移除左箭头非活性
-  currentPage.value += 1;
+  currentPage.value++;
   emit('change', currentPage.value);
 };
 
@@ -136,22 +83,26 @@ const confirm = () => {
 <template>
   <div v-if="pageLength > 1" :class="COMPONENT">
     <div class="pages">
-      <div ref="left" class="paging-item paging-item--prev" @click="last($event)">
-        <g-icon name="left" @click="handleClose" />
+      <div class="page-item page-item--prev" :class="{ 'page-item--disabled': currentPage == 1 }" @click="last($event)">
+        <g-icon name="left" />
       </div>
-      <template v-for="(item, index) of pagers" :key="index">
-        <div v-if="item.isMore && pageLength > 4" class="paging-item paging-item--more">
+      <template v-for="item of pagers" :key="item.page">
+        <div v-if="item.isMore" class="page-item page-item--more">
           ···
         </div>
-        <div v-else :class="item.class + ' paging-item'" @click="change(item)">
-          {{ item.index }}
+        <div v-else class="page-item" :class="{ 'page-item--current': item.isCurrent }" @click="change(item)">
+          {{ item.page }}
         </div>
       </template>
-      <div ref="right" class="paging-item paging-item--next" @click="next($event)">
-        <g-icon name="right" @click="handleClose" />
+      <div
+        class="page-item page-item--next"
+        :class="{ 'page-item--disabled': currentPage == pageLength }"
+        @click="next($event)"
+      >
+        <g-icon name="right" />
       </div>
     </div>
-    <div class="jump-to">
+    <div v-if="props.jumper" class="jump-to">
       <span class="desc tz">跳至</span>
       <input
         v-model="jumpToNum"
@@ -177,10 +128,9 @@ const confirm = () => {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
   .pages {
     display: inline-flex;
-    .paging-item {
+    .page-item {
       display: inline;
       font-size: 14px;
       position: relative;
@@ -199,25 +149,26 @@ const confirm = () => {
       justify-content: center;
       border-radius: @border-radius-medium;
       cursor: pointer;
+
+      &--current {
+        background-color: @primary-color;
+        color: #fff;
+        position: relative;
+        z-index: 1;
+        border-color: #000;
+      }
+
+      &--disabled {
+        .g-icon {
+          opacity: 0.75;
+          cursor: not-allowed;
+          color: #505050;
+          cursor: not-allowed;
+        }
+      }
     }
 
-    .paging-item--current {
-      cursor: default;
-      background-color: @primary-color;
-      color: #fff;
-      position: relative;
-      z-index: 1;
-      border-color: #000;
-    }
-
-    .paging-item--disabled {
-      cursor: not-allowed;
-      opacity: 0.75;
-      background-color: #fff;
-      color: #505050;
-    }
-
-    .paging-item-more {
+    .page-item-more {
       cursor: default;
       background-color: #fff;
       color: #505050;
@@ -247,6 +198,7 @@ const confirm = () => {
       font-family: dm;
       color: #6f6f6f;
       line-height: 21px;
+      border-radius: @border-radius-medium;
     }
 
     .ye {
