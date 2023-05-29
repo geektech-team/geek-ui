@@ -1,4 +1,4 @@
-export const paginationProps = {
+export const props = {
   current: {
     type: Number,
     default: 1,
@@ -15,8 +15,4 @@ export const paginationProps = {
     type: Number,
     default: 10,
   },
-};
-
-export const paginationEmit = {
-  change: (value: number) => value,
 };

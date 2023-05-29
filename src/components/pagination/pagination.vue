@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineEmits, computed, ref } from 'vue';
-import { paginationProps, paginationEmit } from './pagination';
+import { props as paginationProps } from './pagination.props';
+import { emits as paginationEmits } from './pagination.emits';
 import GIcon from '../icon/icon.vue';
 import GButton from '../button/button.vue';
 
@@ -10,7 +11,7 @@ const COMPONENT = 'g-pagination';
 type pageItem = { page: number; isMore: boolean; isCurrent: boolean };
 
 const props = defineProps(paginationProps);
-const emit = defineEmits(paginationEmit);
+const emit = defineEmits(paginationEmits);
 
 const currentPage = ref(props.current);
 const pageLength = computed(() => {
@@ -43,6 +44,15 @@ const change = (item: pageItem) => {
   }
   currentPage.value = item.page;
   emit('change', currentPage.value);
+};
+
+const onClickEllipsis = (index: number) => {
+  const lastIndex = index - 1;
+  const nextIndex = index + 1;
+  const lastPage = pagers.value[lastIndex].page;
+  const nextPage = pagers.value[nextIndex].page;
+  const targetPage = Math.round((lastPage + nextPage) / 2);
+  currentPage.value = targetPage;
 };
 
 const last = (e: MouseEvent) => {
@@ -86,8 +96,8 @@ const confirm = () => {
       <div class="page-item page-item--prev" :class="{ 'page-item--disabled': currentPage == 1 }" @click="last($event)">
         <g-icon name="left" />
       </div>
-      <template v-for="item of pagers" :key="item.page">
-        <div v-if="item.isMore" class="page-item page-item--more">
+      <template v-for="(item, index) of pagers" :key="item.page">
+        <div v-if="item.isMore" class="page-item" @click="onClickEllipsis(index)">
           ···
         </div>
         <div v-else class="page-item" :class="{ 'page-item--current': item.isCurrent }" @click="change(item)">
@@ -103,7 +113,7 @@ const confirm = () => {
       </div>
     </div>
     <div v-if="props.jumper" class="jump-to">
-      <span class="desc tz">跳至</span>
+      <span class="desc">跳至</span>
       <input
         v-model="jumpToNum"
         class="input"
@@ -112,7 +122,7 @@ const confirm = () => {
         maxlength="3"
         @blur="handleBlur"
       >
-      <span class="desc ye">页</span>
+      <span class="desc">页</span>
       <g-button type="primary" @click="confirm">
         确定
       </g-button>
@@ -168,12 +178,6 @@ const confirm = () => {
       }
     }
 
-    .page-item-more {
-      cursor: default;
-      background-color: #fff;
-      color: #505050;
-    }
-
     .arrow {
       cursor: pointer;
       width: 7px;
@@ -183,11 +187,16 @@ const confirm = () => {
   .jump-to {
     display: inline-flex;
     align-items: center;
-    .tz {
-      margin: 0 16px 0 38px;
+    margin-left: 30px;
+    .desc {
+      font-size: 16px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.6);
+      line-height: 28px;
+      white-space: nowrap;
     }
-
     .input {
+      margin: 0 8px;
       height: 28px;
       text-align: center;
       font-size: 16px;
@@ -200,17 +209,8 @@ const confirm = () => {
       line-height: 21px;
       border-radius: @border-radius-medium;
     }
-
-    .ye {
-      margin: 0 36px 0 17px;
-    }
-
-    .desc {
-      font-size: 16px;
-      font-weight: 600;
-      color: rgba(0, 0, 0, 0.6);
-      line-height: 28px;
-      white-space: nowrap;
+    .g-button-primary {
+      margin-left: 30px;
     }
   }
 }
