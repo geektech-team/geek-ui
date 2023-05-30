@@ -7,9 +7,9 @@ const COMPONENT = 'g-tag';
 const emit = defineEmits(['close']);
 
 defineProps<{
-  bordered: boolean;
-  disabled: boolean;
-  closable: boolean;
+  bordered?: boolean;
+  disabled?: boolean;
+  closable?: boolean;
 }>();
 const visible = ref(true);
 

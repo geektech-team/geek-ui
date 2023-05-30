@@ -1,19 +1,29 @@
 # Tag
 
-## Demo
-
 <script setup>
 import GTag from '../../src/components/tag/tag.vue'
 </script>
 
-<g-tag>normal</g-tag><br><br>
-<g-tag disabled>disabled</g-tag><br><br>
-<g-tag closable>closable</g-tag><br><br>
+## normal
 
-## Code
+<g-tag>normal</g-tag>
+
+```html
+<g-tag>normal</g-tag>
+```
+
+## disabled
+
+<g-tag disabled>disabled</g-tag>
 
 ```html
 <g-tag disabled>disabled</g-tag>
+```
+
+## closable
+
 <g-tag closable>closable</g-tag>
-<g-tag>normal</g-tag>
+
+```html
+<g-tag closable>closable</g-tag>
 ```

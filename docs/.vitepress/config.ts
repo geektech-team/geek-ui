@@ -15,12 +15,12 @@ export default defineConfig({
       {
         text: 'Components',
         items: [
+          { text: 'Text', link: '/components/text' },
           { text: 'Button', link: '/components/button' },
           { text: 'Tag', link: '/components/tag' },
           { text: 'Icon', link: '/components/icon' },
           { text: 'Scrollbar Box', link: '/components/scrollbar-box' },
           { text: 'Pagination', link: '/components/pagination' },
-          // { text: 'Carousel', link: '/components/carousel' },
         ],
       },
       {
