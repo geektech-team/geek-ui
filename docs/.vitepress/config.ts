@@ -4,6 +4,7 @@ import { defineConfig } from 'vitepress';
 export default defineConfig({
   title: 'Geek UI',
   description: 'Geek UI depend on Vue3',
+  head: [['link', { rel: 'icon', href: 'https://geek-assistant.com/favicon.ico' }]],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
