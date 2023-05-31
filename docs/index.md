@@ -12,10 +12,10 @@ hero:
       link: /components/button
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Natural
+    details: Approximate visual effects and interactive experiences with nature
+  - title: Creative
+    details: Creative design concept
+  - title: Laconic
+    details: Laconic design and interface
 ---

@@ -1,20 +1,29 @@
 # Button
 
-## Demo
-
 <script setup>
-// import GButton from '../../src/components/button/button.vue'
 import { GButton } from '../../src/components/button/index';
 </script>
 
-<g-button>normal</g-button><br><br>
-<g-button type="primary">primary</g-button><br><br>
-<g-button disabled>disabled</g-button>
+## normal
 
-## Code
+<g-button>normal</g-button>
+
+```html
+<g-button>normal</g-button>
+```
+
+## primary
+
+<g-button type="primary">primary</g-button>
 
 ```html
 <g-button type="primary">primary</g-button>
-<g-button>normal</g-button>
+```
+
+## disabled
+
+<g-button disabled>disabled</g-button>
+
+```html
 <g-button disabled>disabled</g-button>
 ```
