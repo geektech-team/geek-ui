@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineEmits, computed, ref } from 'vue';
-import { props as paginationProps } from './pagination.props';
-import { emits as paginationEmits } from './pagination.emits';
+import { paginationProps } from './pagination.props';
+import { paginationEmits } from './pagination.emits';
 import GIcon from '../icon/icon.vue';
 import GButton from '../button/button.vue';
 

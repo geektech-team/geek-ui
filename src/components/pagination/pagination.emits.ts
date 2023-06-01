@@ -1,3 +1,3 @@
-export const emits = {
+export const paginationEmits = {
   change: (value: number) => value,
 };

@@ -15,7 +15,10 @@ defineProps<{ type?: 'primary' | 'normal'; disabled?: boolean }>();
 @COMPONENT: ~'@{prefix}-button';
 .@{COMPONENT} {
   padding: 2px 10px;
-  border-radius: 5px;
+  border-radius: @border-radius-medium;
+  &-normal {
+    border: @border-normal;
+  }
   &[disabled] {
     color: @primary-color;
     background-color: #f5f5f5;

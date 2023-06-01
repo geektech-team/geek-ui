@@ -1,4 +1,4 @@
-export const props = {
+export const paginationProps = {
   current: {
     type: Number,
     default: 1,

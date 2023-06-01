@@ -11,7 +11,6 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Components', link: '/components/button' },
     ],
-
     sidebar: [
       {
         text: 'Components',
@@ -22,6 +21,7 @@ export default defineConfig({
           { text: 'Icon', link: '/components/icon' },
           { text: 'Scrollbar Box', link: '/components/scrollbar-box' },
           { text: 'Pagination', link: '/components/pagination' },
+          { text: 'Modal', link: '/components/modal' },
         ],
       },
       // {
@@ -32,7 +32,6 @@ export default defineConfig({
       //   ],
       // },
     ],
-
     socialLinks: [{ icon: 'github', link: 'https://github.com/geektech-team/geek-ui' }],
   },
   markdown: {
