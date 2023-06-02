@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /components/button
+      link: /quick-start
 
 features:
   - title: Natural

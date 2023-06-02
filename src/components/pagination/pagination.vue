@@ -142,14 +142,12 @@ const confirm = () => {
     display: inline-flex;
     .page-item {
       display: inline;
-      font-size: 14px;
       position: relative;
       width: 28px;
       height: 28px;
       text-decoration: none;
       background-color: #fff;
       margin-left: 16px;
-      font-size: 18px;
       font-family: dm;
       font-weight: 700;
       color: #6f6f6f;
@@ -189,7 +187,6 @@ const confirm = () => {
     align-items: center;
     margin-left: 30px;
     .desc {
-      font-size: 16px;
       font-weight: 600;
       color: rgba(0, 0, 0, 0.6);
       line-height: 28px;
@@ -199,7 +196,6 @@ const confirm = () => {
       margin: 0 8px;
       height: 28px;
       text-align: center;
-      font-size: 16px;
       font-weight: 700;
       width: 28px;
       background: #fff;

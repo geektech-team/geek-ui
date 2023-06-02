@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" name="'g-button'">
 const COMPONENT = 'g-button';
 
 defineProps<{ type?: 'primary' | 'normal'; disabled?: boolean }>();

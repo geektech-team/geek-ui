@@ -13,6 +13,10 @@ export default defineConfig({
     ],
     sidebar: [
       {
+        text: 'Development guide',
+        items: [{ text: 'Quick Start', link: '/quick-start' }],
+      },
+      {
         text: 'Components',
         items: [
           { text: 'Button', link: '/components/button' },
