@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, computed, ref, toRefs } from 'vue';
+import { computed, ref, toRefs } from 'vue';
 import { useTeleportContainer } from '../../hooks/use-teleport-container';
 import { modalProps } from './modal.props';
 import { modalEmits } from './modal.emits';
@@ -33,12 +33,11 @@ const handleOk = (e: Event) => {
   emit('ok', e);
   close();
 };
-onMounted(() => {});
 </script>
 
 <template>
   <teleport :to="teleportContainer">
-    <div v-show="computedVisible || mounted" :class="`${COMPONENT}-container`">
+    <div v-show="computedVisible" :class="`${COMPONENT}-container`">
       <transition :name="maskAnimationName" appear>
         <div v-if="mask" v-show="computedVisible" ref="maskRef" :class="`${COMPONENT}-mask`" />
       </transition>

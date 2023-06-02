@@ -10,6 +10,14 @@ export const modalProps = {
     default: undefined,
   },
   /**
+   * @zh 对话框默认是否可见（非受控状态）
+   * @en Whether the modal is visible by default (uncontrolled state)
+   */
+  defaultVisible: {
+    type: Boolean,
+    default: false,
+  },
+  /**
    * @zh 标题
    * @en Title
    */

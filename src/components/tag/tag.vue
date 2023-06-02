@@ -13,7 +13,7 @@ defineProps<{
 }>();
 const visible = ref(true);
 
-const handleClose = ev => {
+const handleClose = (ev: Event) => {
   visible.value = false;
   emit('close', ev);
 };
@@ -27,7 +27,7 @@ const handleClose = ev => {
 </template>
 
 <style lang="less">
-@import './../../style/theme/default.less';
+@import './../../style/index.less';
 @COMPONENT: ~'@{prefix}-tag';
 .@{COMPONENT} {
   padding: 0 5px;

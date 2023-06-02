@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const COMPONENT = 'g-icon';
 
-defineProps<{ name: 'close' | 'disabled' }>();
+defineProps<{ name: string }>();
 </script>
 
 <template>
@@ -9,7 +9,7 @@ defineProps<{ name: 'close' | 'disabled' }>();
 </template>
 
 <style lang="less">
-@import './../../style/theme/default.less';
+@import './../../style/index.less';
 @import './../../style/icon/g-icon.less';
 @COMPONENT: ~'@{prefix}-icon';
 .@{COMPONENT} {

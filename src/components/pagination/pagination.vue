@@ -131,7 +131,7 @@ const confirm = () => {
 </template>
 
 <style lang="less">
-@import './../../style/theme/default.less';
+@import './../../style/index.less';
 @COMPONENT: ~'@{prefix}-pagination';
 .@{COMPONENT} {
   margin: 48px 0 82px;
