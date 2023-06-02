@@ -49,7 +49,7 @@ export const modalProps = {
   maskAnimationName: {
     type: String,
     default: (props: Record<string, any>) => {
-      return 'fade-modal';
+      return 'fade';
     },
   },
   /**

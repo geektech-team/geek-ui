@@ -74,7 +74,7 @@ onMounted(() => {});
 </template>
 
 <style lang="less">
-@import './../../style/theme/default.less';
+@import './../../style/index.less';
 @COMPONENT: g-modal;
 .@{COMPONENT} {
   &-container {
@@ -84,6 +84,66 @@ onMounted(() => {});
     bottom: 0;
     left: 0;
     z-index: @z-index-modal;
+
+    .zoom-modal-enter-from,
+    .zoom-modal-appear-from {
+      transform: scale(0.5, 0.5);
+      opacity: 0;
+    }
+
+    .zoom-modal-enter-to,
+    .zoom-modal-appear-to {
+      transform: scale(1, 1);
+      opacity: 1;
+    }
+
+    .zoom-modal-enter-active,
+    .zoom-modal-appear-active {
+      transition: opacity 0.4s @transition-timing-function-overshoot,
+        transform 0.4s @transition-timing-function-overshoot;
+    }
+
+    .zoom-modal-leave-from {
+      transform: scale(1, 1);
+      opacity: 1;
+    }
+
+    .zoom-modal-leave-to {
+      transform: scale(0.5, 0.5);
+      opacity: 0;
+    }
+
+    .zoom-modal-leave-active {
+      transition: opacity 0.4s @transition-timing-function-overshoot,
+        transform 0.4s @transition-timing-function-overshoot;
+    }
+
+    .fade-modal-enter-from,
+    .fade-modal-appear-from {
+      opacity: 0;
+    }
+
+    .fade-modal-enter-to,
+    .fade-modal-appear-to {
+      opacity: 1;
+    }
+
+    .fade-modal-enter-active,
+    .fade-modal-appear-active {
+      transition: opacity 0.4s @transition-timing-function-overshoot;
+    }
+
+    .fade-modal-leave-from {
+      opacity: 1;
+    }
+
+    .fade-modal-leave-to {
+      opacity: 0;
+    }
+
+    .fade-modal-leave-active {
+      transition: opacity 0.4s @transition-timing-function-overshoot;
+    }
   }
   &-mask {
     position: absolute;

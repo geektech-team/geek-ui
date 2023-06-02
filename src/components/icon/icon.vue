@@ -14,5 +14,6 @@ defineProps<{ name: 'close' | 'disabled' }>();
 @COMPONENT: ~'@{prefix}-icon';
 .@{COMPONENT} {
   cursor: pointer;
+  vertical-align: middle;
 }
 </style>
