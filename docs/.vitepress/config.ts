@@ -19,13 +19,28 @@ export default defineConfig({
       {
         text: 'Components',
         items: [
-          { text: 'Button', link: '/components/button' },
-          { text: 'Text', link: '/components/text' },
-          { text: 'Tag', link: '/components/tag' },
-          { text: 'Icon', link: '/components/icon' },
-          { text: 'Scrollbar Box', link: '/components/scrollbar-box' },
-          { text: 'Pagination', link: '/components/pagination' },
-          { text: 'Modal', link: '/components/modal' },
+          { text: 'Layout', items: [{ text: 'Grid', link: '/components/grid' }] },
+          {
+            text: 'Basic',
+            items: [
+              { text: 'Button', link: '/components/button' },
+              { text: 'Text', link: '/components/text' },
+              { text: 'Tag', link: '/components/tag' },
+              { text: 'Icon', link: '/components/icon' },
+            ],
+          },
+          {
+            text: 'Navigation',
+            items: [{ text: 'Pagination', link: '/components/pagination' }],
+          },
+          {
+            text: 'Feedback',
+            items: [{ text: 'Modal', link: '/components/modal' }],
+          },
+          {
+            text: 'Other',
+            items: [{ text: 'Scrollbar Box', link: '/components/scrollbar-box' }],
+          },
         ],
       },
       // {
