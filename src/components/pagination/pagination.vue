@@ -143,15 +143,14 @@ const confirm = () => {
     .page-item {
       display: inline;
       position: relative;
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       text-decoration: none;
       background-color: #fff;
       margin-left: 16px;
       font-family: dm;
       font-weight: 700;
       color: #6f6f6f;
-      line-height: 21px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -178,14 +177,12 @@ const confirm = () => {
 
     .arrow {
       cursor: pointer;
-      width: 7px;
-      height: 11px;
     }
   }
   .jump-to {
     display: inline-flex;
     align-items: center;
-    margin-left: 30px;
+    margin-left: 32px;
     .desc {
       font-weight: 600;
       color: rgba(0, 0, 0, 0.6);
@@ -194,19 +191,18 @@ const confirm = () => {
     }
     .input {
       margin: 0 8px;
-      height: 28px;
+      height: 32px;
       text-align: center;
       font-weight: 700;
-      width: 28px;
+      width: 32px;
       background: #fff;
       border: 1px solid #e2e2e2;
       font-family: dm;
       color: #6f6f6f;
-      line-height: 21px;
       border-radius: @border-radius-medium;
     }
     .g-button-primary {
-      margin-left: 30px;
+      margin-left: 32px;
     }
   }
 }

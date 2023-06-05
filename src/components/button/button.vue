@@ -14,7 +14,8 @@ defineProps<{ type?: 'primary' | 'normal'; disabled?: boolean }>();
 @import './../../style/index.less';
 @COMPONENT: ~'@{prefix}-button';
 .@{COMPONENT} {
-  padding: 2px 10px;
+  height: 32px;
+  padding: 0 15px;
   border-radius: @border-radius-medium;
   &-normal {
     border: @border-normal;
