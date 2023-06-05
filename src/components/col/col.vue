@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { colProps } from './col.props';
-import { isNumber } from '../../utils/is.ts';
+import { isNumber } from '../../utils/is';
 const COMPONENT = 'g-col';
 
 const props = defineProps(colProps);
