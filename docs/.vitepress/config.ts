@@ -35,7 +35,10 @@ export default defineConfig({
           },
           {
             text: 'Feedback',
-            items: [{ text: 'Modal', link: '/components/modal' }],
+            items: [
+              { text: 'Modal', link: '/components/modal' },
+              { text: 'Progress', link: '/components/progress' },
+            ],
           },
           {
             text: 'Other',
