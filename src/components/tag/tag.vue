@@ -36,6 +36,7 @@ const handleClose = (ev: Event) => {
   align-items: center;
   border-color: transparent;
   background-color: @gray-2;
+  color: @primary-text;
   &-disabled {
     color: @primary-color;
     background-color: #f5f5f5;

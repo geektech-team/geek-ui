@@ -18,7 +18,9 @@ defineProps<{ type?: 'primary' | 'normal'; disabled?: boolean }>();
   padding: 0 15px;
   border-radius: @border-radius-medium;
   &-normal {
+    background-color: @color-bg-white;
     border: @border-normal;
+    color: @primary-text;
   }
   &[disabled] {
     color: @primary-color;

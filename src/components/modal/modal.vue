@@ -169,6 +169,7 @@ const handleOk = (e: Event) => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: @primary-text;
   }
   &-content {
     padding: @padding-normal;

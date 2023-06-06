@@ -206,4 +206,11 @@ const confirm = () => {
     }
   }
 }
+html.dark {
+  .@{COMPONENT} {
+    .desc {
+      color: @color-white;
+    }
+  }
+}
 </style>
