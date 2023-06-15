@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: 'Geek UI'
-  text: 'Depend on Vue3'
+  text: Base on Vue3
   tagline: My great project tagline
   actions:
     - theme: brand
