@@ -7,7 +7,7 @@
     "dist"
   ],
   "scripts": {
-    "dev": "vite",
+    "dev": "vitepress dev docs",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "lint-staged": "lint-staged",

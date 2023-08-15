@@ -34,6 +34,10 @@ export default defineConfig({
             items: [{ text: 'Pagination', link: '/components/pagination' }],
           },
           {
+            text: 'Statastic',
+            items: [{ text: 'Table', link: '/components/table' }],
+          },
+          {
             text: 'Feedback',
             items: [
               { text: 'Modal', link: '/components/modal' },
