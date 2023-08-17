@@ -23,9 +23,9 @@ app.mount('#app');
 
 ## Import as need
 
-```ts
+```vue
 <script setup lang="ts">
-import { GButton } from "@geektech/geek-ui";
+import { GButton } from '@geektech/geek-ui';
 </script>
 <template>
   <g-button type="primary">normal</g-button>

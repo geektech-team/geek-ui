@@ -14,6 +14,7 @@ const pushRow = (original: [], rows: [], dinks: []) => {
     const col = {
       key: element.key,
       display: element.display,
+      width: element.width,
       rowSpan: 1,
       colSpan: element.children?.length ?? 1,
       parents: element.parents ?? [],
@@ -56,10 +57,16 @@ const headerKeys = computed(() => {
 </script>
 
 <template>
-  <table :class="COMPONENT">
+  <table :class="COMPONENT" width="100%">
     <thead>
       <tr v-for="(cols, index) in headerRows" :key="index">
-        <th v-for="col in cols" :key="col.key" :rowspan="col.rowSpan" :colspan="col.colSpan">
+        <th
+          v-for="col in cols"
+          :key="col.key"
+          :rowspan="col.rowSpan"
+          :colspan="col.colSpan"
+          :style="{ width: col.width }"
+        >
           {{ col.display }}
         </th>
       </tr>
@@ -78,13 +85,18 @@ const headerKeys = computed(() => {
 @import './../../style/index.less';
 @COMPONENT: ~'@{prefix}-table';
 .@{COMPONENT} {
-  width: 100%;
+  overflow-x: scroll;
+  max-width: 100%;
+  thead,
+  tbody,
+  tr {
+    width: 100%;
+  }
+  tbody {
+    overflow: auto;
+  }
   tr:hover {
     background-color: @gray-3;
-  }
-  td,
-  th {
-    text-align: center;
   }
 }
 </style>
