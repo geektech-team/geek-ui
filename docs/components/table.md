@@ -36,7 +36,6 @@ const data = [{
 
 ## Normal
 
-<br>
 <g-table :header="header" :data="data"/>
 
 ```vue
