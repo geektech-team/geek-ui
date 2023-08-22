@@ -40,6 +40,7 @@ const headerRows = computed(() => {
   pushRow(props.header, rows, []);
   return rows;
 });
+
 const pushKeys = (original: [], keys: []) => {
   original.forEach(element => {
     if (element.children?.length) {
@@ -53,6 +54,35 @@ const headerKeys = computed(() => {
   const keys = [];
   pushKeys(props.header, keys);
   return keys;
+});
+
+const pushRemoveCells = (cells: string[], area: { min: number[]; max: number[] }) => {
+  const [minRowIndex, minColIndex] = area.min;
+  const [maxRowIndex, maxColIndex] = area.max;
+  for (let rowIndex = minRowIndex; rowIndex <= maxRowIndex; rowIndex++) {
+    for (let colIndex = minColIndex; colIndex <= maxColIndex; colIndex++) {
+      if (rowIndex === minRowIndex && colIndex === minColIndex) continue;
+      cells.push(`${rowIndex}-${colIndex}`);
+    }
+  }
+};
+
+const removedCells = computed(() => {
+  const cells = [];
+  const { data } = props;
+  data.forEach((raw, rowIndex) => {
+    headerKeys.value.forEach((key, colIndex) => {
+      const rowSpan = raw[`${key}-row-span`] || 1;
+      const colSpan = raw[`${key}-col-span`] || 1;
+      if (rowSpan > 1 || colSpan > 1) {
+        pushRemoveCells(cells, {
+          min: [rowIndex, colIndex],
+          max: [rowIndex + rowSpan - 1, colIndex + colSpan - 1],
+        });
+      }
+    });
+  });
+  return cells;
 });
 </script>
 
@@ -72,10 +102,17 @@ const headerKeys = computed(() => {
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(dataRow, index) in data" :key="index">
-        <td v-for="key in headerKeys" :key="key">
-          {{ dataRow[key] }}
-        </td>
+      <tr v-for="(dataRow, rowIndex) in data" :key="rowIndex">
+        <template v-for="(key, colIndex) in headerKeys">
+          <td
+            v-if="!removedCells.includes(`${rowIndex}-${colIndex}`)"
+            :key="key"
+            :rowspan="dataRow[`${key}-row-span`] ?? 1"
+            :colspan="dataRow[`${key}-col-span`] ?? 1"
+          >
+            {{ dataRow[key] }}
+          </td>
+        </template>
       </tr>
     </tbody>
   </table>

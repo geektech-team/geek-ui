@@ -22,6 +22,7 @@ const header = [
 ];
 const data = [{
   name: '小鹏 P7',
+  ['powerType-row-span']: 2,
   powerType: 'electric',
   function: '轿车',
   space: '三箱',
@@ -31,7 +32,8 @@ const data = [{
   powerType: 'electric',
   function: 'SUV',
   space: '三箱',
-}]
+}];
+
 </script>
 
 ## Normal
@@ -62,6 +64,7 @@ const header = [
 const data = [
   {
     name: '小鹏 P7',
+    ['powerType-row-span']: 2,
     powerType: 'electric',
     function: '轿车',
     space: '三箱',
