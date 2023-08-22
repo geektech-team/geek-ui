@@ -1,13 +1,14 @@
 <script setup lang="ts" name="'g-table'">
 import { computed } from 'vue';
-import { tableProps } from './table.props';
+import { HeaderItem, TableProps, Col } from './table.props';
 const COMPONENT = 'g-table';
 
-const props = defineProps(tableProps);
-const pushRow = (original: [], rows: [], dinks: []) => {
-  const cols = [];
-  let children = [];
-  dinks.forEach(dink => {
+const props = defineProps<TableProps>();
+
+const pushRow = (original: HeaderItem[], rows: Col[][], dinks: Col[]) => {
+  const cols: Col[] = [];
+  let children: HeaderItem[] = [];
+  dinks.forEach((dink: Col) => {
     dink.rowSpan++;
   });
   original.forEach(element => {
@@ -21,7 +22,7 @@ const pushRow = (original: [], rows: [], dinks: []) => {
     };
     if (element.children?.length) {
       col.parents.forEach(parent => {
-        parent.colSpan += element.children.length - 1;
+        parent.colSpan += (element.children?.length as number) - 1;
       });
       element.children.forEach(child => {
         child.parents = col.parents.concat(col);
@@ -36,12 +37,12 @@ const pushRow = (original: [], rows: [], dinks: []) => {
   if (children.length) pushRow(children, rows, dinks);
 };
 const headerRows = computed(() => {
-  const rows = [];
+  const rows: Col[][] = [];
   pushRow(props.header, rows, []);
   return rows;
 });
 
-const pushKeys = (original: [], keys: []) => {
+const pushKeys = (original: HeaderItem[], keys: string[]) => {
   original.forEach(element => {
     if (element.children?.length) {
       pushKeys(element.children, keys);
@@ -51,7 +52,7 @@ const pushKeys = (original: [], keys: []) => {
   });
 };
 const headerKeys = computed(() => {
-  const keys = [];
+  const keys: string[] = [];
   pushKeys(props.header, keys);
   return keys;
 });
@@ -68,7 +69,7 @@ const pushRemoveCells = (cells: string[], area: { min: number[]; max: number[] }
 };
 
 const removedCells = computed(() => {
-  const cells = [];
+  const cells: string[] = [];
   const { data } = props;
   data.forEach((raw, rowIndex) => {
     headerKeys.value.forEach((key, colIndex) => {
