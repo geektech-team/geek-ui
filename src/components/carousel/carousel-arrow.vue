@@ -49,7 +49,7 @@ const cls = computed(() => {
   color: @color-white;
   background-color: @float-button-bg;
   border-radius: 50%;
-  &-hover {
+  &.@{COMPONENT}-hover {
     display: none;
   }
   &:hover {
