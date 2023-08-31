@@ -52,7 +52,7 @@
     "vue-tsc": "^0.38.4"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,vue,css,less,json,md}": [
+    "*.{js,jsx,ts,tsx,vue,css,less,json}": [
       "prettier --write"
     ],
     "*.{js,ts,tsx,vue}": [
