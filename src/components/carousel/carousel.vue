@@ -48,7 +48,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const emit = defineEmits(['update:current', 'change']);
 const carousel = ref();
-const components = ref([]);
+const components = ref<number[]>([]);
 const count = computed(() => {
   return components.value.length;
 });
@@ -86,7 +86,8 @@ const hasArrow = computed(() => {
   return props.arrowInMode !== ArrowInMode.Never && components.value.length > 1;
 });
 let animationTimer = 0;
-const slideTo = ({ targetIndex, isToPrevious = false, isManual = false }) => {
+const slideTo = (options: { targetIndex: number; isToPrevious?: boolean; isManual?: boolean }) => {
+  const { targetIndex, isToPrevious = false, isManual = false } = options;
   if (!animationTimer && targetIndex !== currentIndex.value) {
     previousIndex.value = currentIndex.value;
     currentIndex.value = targetIndex;
@@ -118,7 +119,7 @@ const onNextClick = () =>
     targetIndex: nextIndex.value,
     isManual: true,
   });
-const onSelect = index =>
+const onSelect = (index: number) =>
   slideTo({
     targetIndex: index,
     isToPrevious: index < currentIndex.value,

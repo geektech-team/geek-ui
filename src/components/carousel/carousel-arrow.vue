@@ -16,10 +16,10 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['previousClick', 'nextClick']);
 const previousIconName = computed(() => (props.direction === Direction.Horizontal ? 'left' : 'top'));
 const nextIconName = computed(() => (props.direction === Direction.Horizontal ? 'right' : 'bottom'));
-const onPreviousClick = ev => {
+const onPreviousClick = (ev: Event) => {
   emit('previousClick', ev);
 };
-const onNextClick = ev => {
+const onNextClick = (ev: Event) => {
   emit('nextClick', ev);
 };
 const cls = computed(() => {

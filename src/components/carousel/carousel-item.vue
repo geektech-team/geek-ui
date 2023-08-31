@@ -1,12 +1,23 @@
 <script setup lang="ts">
-import { computed, inject, onMounted, getCurrentInstance } from 'vue';
-import { carouselInjectionKey } from './context.ts';
+import { computed, inject, onMounted, getCurrentInstance, Ref } from 'vue';
+import { carouselInjectionKey } from './context';
+import { AnimationName } from './carousel.type';
 
 const COMPONENT = 'g-carousel-item';
-const context = inject(carouselInjectionKey, {});
+const context = inject<{
+  components?: number[];
+  currentIndex?: number;
+  previousIndex?: number;
+  nextIndex?: number;
+  slideDirection?: string;
+  animationName?: AnimationName;
+  addComponent?: any;
+  transitionTimingFunction?: string;
+  animationInterval?: number;
+}>(carouselInjectionKey, {});
 const instance = getCurrentInstance();
 const index = computed(() => {
-  return context.components?.indexOf(instance.uid) ?? -1;
+  return context.components?.indexOf(instance?.uid ?? -1) ?? -1;
 });
 const isCurrent = computed(() => index.value === context.currentIndex);
 const carouselDynamicClass = computed(() => {
@@ -15,8 +26,8 @@ const carouselDynamicClass = computed(() => {
     [`${COMPONENT}-prev`]: index.value === previousIndex,
     [`${COMPONENT}-next`]: index.value === nextIndex,
     [`${COMPONENT}-current`]: isCurrent.value,
-    [`${COMPONENT}-slide-in`]: animationName === 'slide' && isCurrent.value,
-    [`${COMPONENT}-slide-out`]: animationName === 'slide' && index.value === previousIndex,
+    [`${COMPONENT}-slide-in`]: animationName === AnimationName.Slide && isCurrent.value,
+    [`${COMPONENT}-slide-out`]: animationName === AnimationName.Slide && index.value === previousIndex,
   };
 });
 const animationStyle = computed(() => {
@@ -34,7 +45,7 @@ const style = computed(() => {
   };
 });
 onMounted(() => {
-  context.addComponent(instance.uid);
+  context.addComponent(instance?.uid);
 });
 </script>
 

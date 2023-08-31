@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { IndicatorPosition } from './carousel.type.ts';
+import { IndicatorPosition } from './carousel.type';
 
 const COMPONENT = 'g-carousel-indicator';
 
