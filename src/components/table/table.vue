@@ -1,9 +1,26 @@
 <script setup lang="ts" name="'g-table'">
 import { computed } from 'vue';
-import { HeaderItem, TableProps, Col } from './table.props';
 const COMPONENT = 'g-table';
+interface Col {
+  key: string;
+  display: string;
+  width: string;
+  rowSpan: number;
+  colSpan: number;
+  parents: Col[];
+}
+interface HeaderItem {
+  key: string;
+  display: string;
+  width: string;
+  children?: HeaderItem[];
+  parents?: Col[];
+}
 
-const props = defineProps<TableProps>();
+const props = defineProps<{
+  header: HeaderItem[];
+  data: Record<string, any>[];
+}>();
 
 const pushRow = (original: HeaderItem[], rows: Col[][], dinks: Col[]) => {
   const cols: Col[] = [];

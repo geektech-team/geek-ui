@@ -48,6 +48,14 @@ export default defineConfig({
             text: 'Other',
             items: [{ text: 'Scrollbar Box', link: '/components/scrollbar-box' }],
           },
+          {
+            text: 'Animation',
+            items: [
+              { text: 'Loading', link: '/components/loading' },
+              { text: 'Carousel', link: '/components/carousel' },
+              // { text: 'Adding to Cart', link: '/components/adding-to-cart' },
+            ],
+          },
         ],
       },
       // {

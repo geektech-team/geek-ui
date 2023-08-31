@@ -8,7 +8,8 @@ import GIcon from '../../src/components/icon/icon.vue'
 
 <g-icon name="close"/>&nbsp;&nbsp;
 <g-icon name="left"/>&nbsp;&nbsp;
-<g-icon name="right"/>
+<g-icon name="right"/>&nbsp;&nbsp;
+<g-icon name="loading"/>&nbsp;&nbsp;
 
 ## Code
 

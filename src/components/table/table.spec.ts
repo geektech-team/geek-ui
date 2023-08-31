@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { GTable } from './index';
 
 describe('GTable', () => {
-  const primaryWrapper = mount(GTable, { props: { type: 'primary' }, slots: { default: 'Primary' } });
+  const primaryWrapper = mount(GTable, { slots: { default: 'Primary' } });
   it('render', () => {
     expect(primaryWrapper).toBeTruthy();
   });
