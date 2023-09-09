@@ -1,5 +1,5 @@
 <script setup lang="ts" name="'g-table'">
-import { computed } from 'vue';
+import { computed, withDefaults } from 'vue';
 const COMPONENT = 'g-table';
 interface Col {
   key: string;
@@ -16,11 +16,19 @@ interface HeaderItem {
   children?: HeaderItem[];
   parents?: Col[];
 }
-
-const props = defineProps<{
+interface Props {
   header: HeaderItem[];
   data: Record<string, any>[];
-}>();
+  headerSticky?: boolean;
+  headerStickyTop?: number;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  header: () => [],
+  data: () => [],
+  headerSticky: true,
+  headerStickyTop: 0,
+});
 
 const pushRow = (original: HeaderItem[], rows: Col[][], dinks: Col[]) => {
   const cols: Col[] = [];
@@ -106,7 +114,7 @@ const removedCells = computed(() => {
 
 <template>
   <table :class="COMPONENT" width="100%">
-    <thead>
+    <thead :class="headerSticky ? `${COMPONENT}-header-sticky` : ''" :style="{ top: `${headerStickyTop}px` }">
       <tr v-for="(cols, index) in headerRows" :key="index">
         <th
           v-for="col in cols"
@@ -142,6 +150,9 @@ const removedCells = computed(() => {
 .@{COMPONENT} {
   overflow-x: scroll;
   max-width: 100%;
+  &-header-sticky {
+    position: sticky;
+  }
   thead,
   tbody,
   tr {

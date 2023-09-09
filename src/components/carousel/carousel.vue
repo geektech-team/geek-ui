@@ -16,12 +16,6 @@ interface Props {
   arrowInMode?: ArrowInMode;
   indicator?: boolean;
   indicatorPosition?: IndicatorPosition;
-  navColor?: string; // 导航颜色
-  navSize?: number; // 导航大小
-  pagination?: boolean; // 是否显示分页
-  pageActiveColor?: string; // 分页选中颜色
-  pageSize?: number; // 分页大小
-  pageStyle?: CSSProperties; // 分页样式，优先级高于pageSize
   disableOnInteraction?: boolean; // 用户操作导航或分页之后，是否禁止自动切换，默认为true：停止
   hoverToPause?: boolean; // 鼠标悬浮时暂停自动切换，鼠标离开时恢复自动切换，默认true
 }
@@ -35,14 +29,6 @@ const props = withDefaults(defineProps<Props>(), {
   arrowInMode: ArrowInMode.Hover,
   indicator: true,
   indicatorPosition: IndicatorPosition.Bottom,
-  navColor: '#FFF',
-  navSize: 36,
-  pagination: true,
-  pageActiveColor: '#1677FF',
-  pageSize: 10,
-  pageStyle: () => {
-    return {};
-  },
   disableOnInteraction: true,
   hoverToPause: true,
 });
@@ -246,7 +232,6 @@ onBeforeUnmount(() => {
     left: 10px;
     top: 50%;
     transform: translateY(-50%);
-    fill: var(--navColor);
     cursor: pointer;
     opacity: 0;
     pointer-events: none;
@@ -260,31 +245,12 @@ onBeforeUnmount(() => {
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    fill: var(--navColor);
     cursor: pointer;
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s;
     &:hover {
       opacity: 1;
-    }
-  }
-  .m-switch {
-    position: absolute;
-    bottom: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-wrap: nowrap;
-    .u-circle {
-      background-color: rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      margin: 0 4px;
-      cursor: pointer;
-      transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .active {
-      background-color: var(--pageActiveColor) !important;
     }
   }
 }

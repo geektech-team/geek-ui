@@ -34,27 +34,23 @@ export default defineConfig({
             items: [{ text: 'Pagination', link: '/components/pagination' }],
           },
           {
-            text: 'Statastic',
-            items: [{ text: 'Table', link: '/components/table' }],
+            text: 'Statastic/Display',
+            items: [
+              { text: 'Table', link: '/components/table' },
+              { text: 'Carousel', link: '/components/carousel' },
+            ],
           },
           {
             text: 'Feedback',
             items: [
               { text: 'Modal', link: '/components/modal' },
               { text: 'Progress', link: '/components/progress' },
+              { text: 'Loading', link: '/components/loading' },
             ],
           },
           {
             text: 'Other',
             items: [{ text: 'Scrollbar Box', link: '/components/scrollbar-box' }],
-          },
-          {
-            text: 'Animation',
-            items: [
-              { text: 'Loading', link: '/components/loading' },
-              { text: 'Carousel', link: '/components/carousel' },
-              // { text: 'Adding to Cart', link: '/components/adding-to-cart' },
-            ],
           },
         ],
       },
