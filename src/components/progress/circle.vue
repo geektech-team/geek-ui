@@ -49,7 +49,7 @@ const center = computed(() => mergedWidth.value / 2);
 .@{COMPONENT} {
   stroke: @gray-4;
   &-bar {
-    stroke: @primary-color;
+    stroke: var(--primary-color);
   }
 }
 </style>

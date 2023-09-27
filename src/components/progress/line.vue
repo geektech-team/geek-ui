@@ -40,7 +40,7 @@ const COMPONENT = 'g-progress-line';
   &-bar {
     height: 100%;
     border-radius: 100px;
-    background-color: @primary-color;
+    background-color: var(--primary-color);
     position: relative;
     transition: width 0.6s @transition-timing-function-standard, background 0.3s @transition-timing-function-standard;
     max-width: 100%;

@@ -50,7 +50,10 @@ export default defineConfig({
           },
           {
             text: 'Other',
-            items: [{ text: 'Scrollbar Box', link: '/components/scrollbar-box' }],
+            items: [
+              { text: 'Scrollbar Box', link: '/components/scrollbar-box' },
+              { text: 'Timeline', link: '/components/timeline' },
+            ],
           },
         ],
       },

@@ -19,9 +19,10 @@ defineProps<{ type?: 'primary' | 'normal'; disabled?: boolean }>();
   border-radius: @border-radius-medium;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px -5px 10px @color-bg-white;
   font-weight: 500;
+  border: none;
+  cursor: pointer;
   &-normal {
     background-color: @gray-2;
-    // border: @border-normal;
     color: @primary-text;
     &:active {
       box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px @color-bg-white;
@@ -35,10 +36,9 @@ defineProps<{ type?: 'primary' | 'normal'; disabled?: boolean }>();
   }
   &-primary {
     color: #fff;
-    background-color: @primary-color;
-    border-color: #1890ff;
+    background-color: var(--primary-color);
     &:active {
-      box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px @primary-color;
+      box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px var(--primary-color);
     }
   }
 }
@@ -53,7 +53,7 @@ defineProps<{ type?: 'primary' | 'normal'; disabled?: boolean }>();
     }
     &-primary {
       &:active {
-        box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px @primary-dark;
+        box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px var(--primary-dark);
       }
     }
   }

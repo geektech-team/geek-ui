@@ -38,7 +38,7 @@ const handleClose = (ev: Event) => {
   background-color: @gray-2;
   color: @primary-text;
   &-disabled {
-    color: @primary-color;
+    color: var(--primary-color);
     background-color: #f5f5f5;
     border-color: #d9d9d9;
   }

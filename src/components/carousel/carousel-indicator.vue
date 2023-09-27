@@ -80,7 +80,7 @@ const onSelect = (index: number) => {
     cursor: pointer;
     &-active,
     &:hover {
-      background-color: @primary-color;
+      background-color: var(--primary-color);
     }
     &:not(:last-child) {
       margin-right: 10px;
@@ -89,7 +89,7 @@ const onSelect = (index: number) => {
 
   &-item-active,
   &-item:hover {
-    background-color: @primary-color;
+    background-color: var(--primary-color);
   }
 }
 </style>

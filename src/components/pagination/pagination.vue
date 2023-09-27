@@ -158,7 +158,7 @@ const confirm = () => {
       cursor: pointer;
 
       &--current {
-        background-color: @primary-color;
+        background-color: var(--primary-color);
         color: #fff;
         position: relative;
         z-index: 1;

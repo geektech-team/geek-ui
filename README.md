@@ -16,13 +16,28 @@ Import in your main.ts
 
 ```ts
 import { createApp } from 'vue';
-import GeekUI from 'geek-ui'; // import GeekUI
-import 'geek-ui/dist/style.css'; // import style
+import GeekUI from '@geektech/geek-ui'; // import GeekUI
+import '@geektech/geek-ui/dist/style.css'; // import style
 import App from './App.vue';
 
 const app = createApp(App);
 app.use(GeekUI);
 app.mount('#app');
+```
+
+## Change theme
+
+Reset var
+
+```css
+
+:root {
+  --primary-color: @cover-theme-primary-color;
+  --primary-light: @cover-theme-primary-light;
+  --primary-lighter: @cover-theme-primary-lighter;
+  --primary-dark: @cover-theme-primary-dark;
+  --primary-darker: @cover-theme-primary-darker;
+}
 ```
 
 ## Import as need
