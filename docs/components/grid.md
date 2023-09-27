@@ -17,7 +17,7 @@ import { GRow } from '../../src/components/row'
   <g-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" :xxl="3" style="background: gray">col</g-col>
 </g-row>
 
-```vue
+```html
 <g-row>
   <g-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" :xxl="3" style="background: gray">col</g-col>
   <g-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" :xxl="3" style="background: gray">col</g-col>

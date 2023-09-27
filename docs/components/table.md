@@ -40,7 +40,7 @@ const data = [{
 
 <g-table :header="header" :data="data"/>
 
-```vue
+```html
 <script setup>
 import { GTable } from '../../src/components/table/index';
 const header = [

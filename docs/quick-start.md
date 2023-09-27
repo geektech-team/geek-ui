@@ -3,7 +3,7 @@
 ## Install
 
 ```bash
-pnpm i @geektech/geek-ui
+pnpm i geek-ui
 ```
 
 ## Import all
@@ -21,11 +21,26 @@ app.use(GeekUI);
 app.mount('#app');
 ```
 
+## Change theme
+
+Reset var
+
+```css
+
+:root {
+  --primary-color: @cover-theme-primary-color;
+  --primary-light: @cover-theme-primary-light;
+  --primary-lighter: @cover-theme-primary-lighter;
+  --primary-dark: @cover-theme-primary-dark;
+  --primary-darker: @cover-theme-primary-darker;
+}
+```
+
 ## Import as need
 
-```vue
+```html
 <script setup lang="ts">
-import { GButton } from '@geektech/geek-ui';
+import { GButton } from "geek-ui";
 </script>
 <template>
   <g-button type="primary">normal</g-button>

@@ -10,6 +10,6 @@ import GLoading from '../../src/components/loading/loading.vue'
 
 ## Code
 
-```vue
+```html
 <g-loading />
 ```

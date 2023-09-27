@@ -33,7 +33,7 @@ import { GCarousel, GCarouselItem } from '../../src/components/carousel';
 
 ## Code
 
-```vue
+```html
 <template>
   <g-carousel>
     <g-carousel-item>
@@ -48,14 +48,14 @@ import { GCarousel, GCarouselItem } from '../../src/components/carousel';
   </g-carousel>
 </template>
 <style lang="less">
-.g-carousel {
-  width: 100%;
-  height: 300px;
-}
-.g-carousel-item img {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
+  .g-carousel {
+    width: 100%;
+    height: 300px;
+  }
+  .g-carousel-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
 </style>
 ```

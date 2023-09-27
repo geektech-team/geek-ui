@@ -42,7 +42,7 @@ Reset var
 
 ## Import as need
 
-```ts
+```html
 <script setup lang="ts">
 import { GButton } from "geek-ui";
 </script>
