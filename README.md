@@ -44,7 +44,7 @@ Reset var
 
 ```html
 <script setup lang="ts">
-import { GButton } from "geek-ui";
+import { GButton } from "@geektech/geek-ui/dist/button";
 </script>
 <template>
   <g-button type="primary">normal</g-button>
