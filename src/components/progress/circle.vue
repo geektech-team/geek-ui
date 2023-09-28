@@ -13,7 +13,7 @@ const center = computed(() => mergedWidth.value / 2);
 </script>
 
 <template>
-  <div :class="`${COMPONENT}-wrapper`">
+  <div :class="`${COMPONENT}`">
     <svg :viewBox="`0 0 ${mergedWidth} ${mergedWidth}`" :class="`${COMPONENT}-svg`">
       <circle
         :class="COMPONENT"
@@ -27,7 +27,7 @@ const center = computed(() => mergedWidth.value / 2);
         }"
       />
       <circle
-        :class="`${COMPONENT}-bar`"
+        :class="`${COMPONENT}-svg-bar`"
         fill="none"
         :cx="center"
         :cy="center"
@@ -48,8 +48,11 @@ const center = computed(() => mergedWidth.value / 2);
 @COMPONENT: g-progress-circle;
 .@{COMPONENT} {
   stroke: @gray-4;
-  &-bar {
-    stroke: var(--primary-color);
+  transform: rotate(-90deg);
+  &-svg {
+    &-bar {
+      stroke: var(--primary-color);
+    }
   }
 }
 </style>

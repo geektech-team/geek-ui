@@ -42,14 +42,14 @@ defineProps<{ title: string; time: string; content: string }>();
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background-color: gray;
+      background-color: var(--primary-color);
     }
     &-line {
       position: absolute;
       width: 4px;
       top: 28px;
       left: 3px;
-      bottom: 3px;
+      bottom: 0;
       background-color: rgb(128 128 128 / 50%);
     }
   }
