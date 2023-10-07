@@ -11,7 +11,6 @@ defineProps<{ type?: 'primary' | 'normal'; disabled?: boolean }>();
 </template>
 
 <style lang="less">
-@import './../../style/index.less';
 @COMPONENT: ~'@{prefix}-button';
 .@{COMPONENT} {
   height: 32px;

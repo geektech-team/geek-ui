@@ -27,7 +27,6 @@ const handleClose = (ev: Event) => {
 </template>
 
 <style lang="less">
-@import './../../style/index.less';
 @COMPONENT: ~'@{prefix}-tag';
 .@{COMPONENT} {
   padding: 0 5px;

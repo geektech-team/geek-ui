@@ -35,7 +35,6 @@ const cls = computed(() => {
 </template>
 
 <style lang="less">
-@import './../../style/index.less';
 @carousel-arrow-position: 20px;
 @COMPONENT: g-carousel-arrow;
 .@{COMPONENT} {

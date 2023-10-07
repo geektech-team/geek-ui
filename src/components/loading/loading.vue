@@ -8,7 +8,6 @@ const COMPONENT = 'g-loading';
 </template>
 
 <style lang="less">
-@import './../../style/index.less';
 @COMPONENT: ~'@{prefix}-loading';
 .@{COMPONENT} {
   cursor: wait;

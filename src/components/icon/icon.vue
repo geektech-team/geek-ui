@@ -9,7 +9,6 @@ defineProps<{ name: string }>();
 </template>
 
 <style lang="less">
-@import './../../style/index.less';
 @import './../../style/icon/g-icon.less';
 @COMPONENT: ~'@{prefix}-icon';
 .@{COMPONENT} {

@@ -20,7 +20,6 @@ onMounted(() => {});
 </template>
 
 <style lang="less">
-@import './../../style/index.less';
 @COMPONENT: ~'@{prefix}-scrollbar-box';
 .@{COMPONENT} {
   overflow: auto;

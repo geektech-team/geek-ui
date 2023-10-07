@@ -21,7 +21,6 @@ const COMPONENT = 'g-progress-line';
 </template>
 
 <style lang="less">
-@import './../../style/index.less';
 @COMPONENT: g-progress-line;
 .@{COMPONENT} {
   background-color: @gray-4;

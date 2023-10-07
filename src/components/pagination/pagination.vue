@@ -55,7 +55,7 @@ const onClickEllipsis = (index: number) => {
   currentPage.value = targetPage;
 };
 
-const last = (e: MouseEvent) => {
+const last = () => {
   if (currentPage.value <= 1) {
     return;
   }
@@ -63,7 +63,7 @@ const last = (e: MouseEvent) => {
   emit('change', currentPage.value);
 };
 
-const next = (e: MouseEvent) => {
+const next = () => {
   if (currentPage.value >= pageLength.value) {
     return;
   }
@@ -131,7 +131,6 @@ const confirm = () => {
 </template>
 
 <style lang="less">
-@import './../../style/index.less';
 @COMPONENT: ~'@{prefix}-pagination';
 .@{COMPONENT} {
   margin: 48px 0 82px;

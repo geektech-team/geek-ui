@@ -12,7 +12,7 @@ const classes = computed(() => {
     [`${COMPONENT}-offset-${offset}`]: offset && offset > 0,
   };
   const screenList: {
-    [key: string]: number | { [key: string]: any } | undefined;
+    [key: string]: number | undefined;
   } = { xs, sm, md, lg, xl, xxl };
 
   Object.keys(screenList).forEach(screen => {
@@ -32,7 +32,6 @@ const classes = computed(() => {
 </template>
 
 <style lang="less">
-@import './../../style/index.less';
 @COMPONENT: ~'@{prefix}-col';
 .@{COMPONENT} {
   box-sizing: border-box;

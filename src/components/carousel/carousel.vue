@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, reactive, onUpdated, provide, onMounted, onBeforeUnmount, watchEffect } from 'vue';
-import type { CSSProperties } from 'vue';
+import { ref, computed, reactive, provide, onBeforeUnmount, watchEffect } from 'vue';
 import GCarouselArrow from './carousel-arrow.vue';
 import GCarouselIndicator from './carousel-indicator.vue';
 import { carouselInjectionKey } from './context';
@@ -169,7 +168,6 @@ onBeforeUnmount(() => {
   </div>
 </template>
 <style lang="less">
-@import './../../style/index.less';
 @import './slide.less';
 @COMPONENT: ~'@{prefix}-carousel';
 .@{COMPONENT} {

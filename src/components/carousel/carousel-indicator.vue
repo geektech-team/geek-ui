@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
 import { IndicatorPosition } from './carousel.type';
 
 const COMPONENT = 'g-carousel-indicator';
@@ -39,7 +38,6 @@ const onSelect = (index: number) => {
 </template>
 
 <style lang="less">
-@import './../../style/index.less';
 @COMPONENT: g-carousel-indicator;
 @carousel-indicator-position: 15px;
 .@{COMPONENT} {

@@ -73,7 +73,6 @@ const handleOk = (e: Event) => {
 </template>
 
 <style lang="less">
-@import './../../style/index.less';
 @COMPONENT: g-modal;
 .@{COMPONENT} {
   &-container {

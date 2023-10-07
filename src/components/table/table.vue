@@ -18,7 +18,7 @@ interface HeaderItem {
 }
 interface Props {
   header: HeaderItem[];
-  data: Record<string, any>[];
+  data: Record<string, unknown>[];
   headerSticky?: boolean;
   headerStickyTop?: number;
 }
@@ -145,7 +145,6 @@ const removedCells = computed(() => {
 </template>
 
 <style lang="less">
-@import './../../style/index.less';
 @COMPONENT: ~'@{prefix}-table';
 .@{COMPONENT} {
   overflow-x: scroll;

@@ -70,4 +70,14 @@ export default defineConfig({
   markdown: {
     lineNumbers: true,
   },
+  vite: {
+    // Vite config options
+    css: {
+      preprocessorOptions: {
+        less: {
+          additionalData: '@import (reference) "./src/style/theme/default.less";',
+        },
+      },
+    },
+  },
 });

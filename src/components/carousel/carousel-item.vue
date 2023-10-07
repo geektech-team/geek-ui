@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject, onMounted, getCurrentInstance, Ref } from 'vue';
+import { computed, inject, onMounted, getCurrentInstance } from 'vue';
 import { carouselInjectionKey } from './context';
 import { AnimationName } from './carousel.type';
 
@@ -11,7 +11,7 @@ const context = inject<{
   nextIndex?: number;
   slideDirection?: string;
   animationName?: AnimationName;
-  addComponent?: any;
+  addComponent: unknown;
   transitionTimingFunction?: string;
   animationInterval?: number;
 }>(carouselInjectionKey, {});
@@ -21,7 +21,7 @@ const index = computed(() => {
 });
 const isCurrent = computed(() => index.value === context.currentIndex);
 const carouselDynamicClass = computed(() => {
-  const { previousIndex, nextIndex, animationName, slideDirection } = context;
+  const { previousIndex, nextIndex, animationName } = context;
   return {
     [`${COMPONENT}-prev`]: index.value === previousIndex,
     [`${COMPONENT}-next`]: index.value === nextIndex,
@@ -56,7 +56,6 @@ onMounted(() => {
 </template>
 
 <style lang="less">
-@import './../../style/index.less';
 @COMPONENT: ~'@{prefix}-carousel-item';
 .@{COMPONENT} {
   position: absolute;

@@ -44,7 +44,6 @@ const center = computed(() => mergedWidth.value / 2);
 </template>
 
 <style lang="less">
-@import './../../style/index.less';
 @COMPONENT: g-progress-circle;
 .@{COMPONENT} {
   stroke: @gray-4;

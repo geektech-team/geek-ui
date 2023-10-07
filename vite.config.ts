@@ -41,5 +41,12 @@ export default defineConfig({
       formats: ['es'],
     },
   },
+  css: {
+    preprocessorOptions: {
+      less: {
+        additionalData: '@import (reference) "./src/style/theme/default.less";',
+      },
+    },
+  },
   plugins: [vue(), dts({ outDir: 'dist', rollupTypes: true })],
 });
