@@ -21,41 +21,41 @@ export const colProps = {
    * @en <576px responsive grid
    */
   xs: {
-    type: [Number, Object] as PropType<number | { [key: string]: any }>,
+    type: [Number, Object] as PropType<number>,
   },
   /**
    * @zh >= 576px 响应式栅格
    * @en >= 576px responsive grid
    */
   sm: {
-    type: [Number, Object] as PropType<number | { [key: string]: any }>,
+    type: [Number, Object] as PropType<number>,
   },
   /**
    * @zh >= 768px 响应式栅格
    * @en >= 768px responsive grid
    */
   md: {
-    type: [Number, Object] as PropType<number | { [key: string]: any }>,
+    type: [Number, Object] as PropType<number>,
   },
   /**
    * @zh >= 992px 响应式栅格
    * @en >= 992px responsive grid
    */
   lg: {
-    type: [Number, Object] as PropType<number | { [key: string]: any }>,
+    type: [Number, Object] as PropType<number>,
   },
   /**
    * @zh >= 1200px 响应式栅格
    * @en >= 1200px responsive grid
    */
   xl: {
-    type: [Number, Object] as PropType<number | { [key: string]: any }>,
+    type: [Number, Object] as PropType<number>,
   },
   /**
    * @zh >= 1600px 响应式栅格
    * @en >= 1600px responsive grid
    */
   xxl: {
-    type: [Number, Object] as PropType<number | { [key: string]: any }>,
+    type: [Number, Object] as PropType<number>,
   },
 };

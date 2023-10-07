@@ -11,10 +11,10 @@ const context = inject<{
   nextIndex?: number;
   slideDirection?: string;
   animationName?: AnimationName;
-  addComponent: unknown;
+  addComponent?:(uid: number) => void;
   transitionTimingFunction?: string;
   animationInterval?: number;
-}>(carouselInjectionKey, {});
+    }>(carouselInjectionKey, {});
 const instance = getCurrentInstance();
 const index = computed(() => {
   return context.components?.indexOf(instance?.uid ?? -1) ?? -1;
@@ -45,7 +45,7 @@ const style = computed(() => {
   };
 });
 onMounted(() => {
-  context.addComponent(instance?.uid);
+  if (instance?.uid && context.addComponent) context.addComponent(instance.uid);
 });
 </script>
 

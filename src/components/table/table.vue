@@ -98,8 +98,8 @@ const removedCells = computed(() => {
   const { data } = props;
   data.forEach((raw, rowIndex) => {
     headerKeys.value.forEach((key, colIndex) => {
-      const rowSpan = raw[`${key}-row-span`] || 1;
-      const colSpan = raw[`${key}-col-span`] || 1;
+      const rowSpan = (raw[`${key}-row-span`] || 1) as number;
+      const colSpan = (raw[`${key}-col-span`] || 1) as number;
       if (rowSpan > 1 || colSpan > 1) {
         pushRemoveCells(cells, {
           min: [rowIndex, colIndex],
@@ -133,8 +133,8 @@ const removedCells = computed(() => {
           <td
             v-if="!removedCells.includes(`${rowIndex}-${colIndex}`)"
             :key="key"
-            :rowspan="dataRow[`${key}-row-span`] ?? 1"
-            :colspan="dataRow[`${key}-col-span`] ?? 1"
+            :rowspan="(dataRow[`${key}-row-span`] ?? 1) as number"
+            :colspan="(dataRow[`${key}-col-span`] ?? 1) as number"
           >
             {{ dataRow[key] }}
           </td>

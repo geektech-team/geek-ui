@@ -42,7 +42,7 @@ defineProps<{ title: string; time: string; content: string }>();
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background-color: var(--primary-color);
+      background-color: @gray-10;
     }
     &-line {
       position: absolute;

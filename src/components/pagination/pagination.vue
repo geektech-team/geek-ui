@@ -93,7 +93,7 @@ const confirm = () => {
 <template>
   <div v-if="pageLength > 1" :class="COMPONENT">
     <div class="pages">
-      <div class="page-item page-item--prev" :class="{ 'page-item--disabled': currentPage == 1 }" @click="last($event)">
+      <div class="page-item page-item--prev" :class="{ 'page-item--disabled': currentPage == 1 }" @click="last">
         <g-icon name="left" />
       </div>
       <template v-for="(item, index) of pagers" :key="item.page">
@@ -107,7 +107,7 @@ const confirm = () => {
       <div
         class="page-item page-item--next"
         :class="{ 'page-item--disabled': currentPage == pageLength }"
-        @click="next($event)"
+        @click="next"
       >
         <g-icon name="right" />
       </div>
