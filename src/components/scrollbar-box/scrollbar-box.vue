@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
-
 const COMPONENT = 'g-scrollbar-box';
 defineProps<{ height?: number; width?: number }>();
-
-onMounted(() => {});
+const emit = defineEmits(['scroll']);
 </script>
 
 <template>
@@ -14,6 +11,7 @@ onMounted(() => {});
       height: height ? `${height}px` : '',
       width: width ? `${width}px` : '',
     }"
+    @scroll.passive="e => emit('scroll', e)"
   >
     <slot />
   </div>

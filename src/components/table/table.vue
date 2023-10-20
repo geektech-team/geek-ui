@@ -1,20 +1,19 @@
-<script setup lang="ts" name="'g-table'">
-import { computed, withDefaults } from 'vue';
+<script setup lang="ts">
+import { ref, computed, withDefaults } from 'vue';
+import useResizeObserver from '../../hooks/use-resize-observer';
+import { GScrollbarBox } from '../scrollbar-box';
+import { debounce } from '@geektech/utils';
+import { GIcon } from '../icon';
+
 const COMPONENT = 'g-table';
-interface Col {
-  key: string;
-  display: string;
-  width: string;
-  rowSpan: number;
-  colSpan: number;
-  parents: Col[];
-}
 interface HeaderItem {
   key: string;
   display: string;
-  width: string;
+  width?: number;
+  rowSpan: number;
+  colSpan: number;
   children?: HeaderItem[];
-  parents?: Col[];
+  parents?: HeaderItem[];
 }
 interface Props {
   header: HeaderItem[];
@@ -30,10 +29,10 @@ const props = withDefaults(defineProps<Props>(), {
   headerStickyTop: 0,
 });
 
-const pushRow = (original: HeaderItem[], rows: Col[][], dinks: Col[]) => {
-  const cols: Col[] = [];
+const pushRow = (original: HeaderItem[], rows: HeaderItem[][], dinks: HeaderItem[]) => {
+  const cols: HeaderItem[] = [];
   let children: HeaderItem[] = [];
-  dinks.forEach((dink: Col) => {
+  dinks.forEach((dink: HeaderItem) => {
     dink.rowSpan++;
   });
   original.forEach(element => {
@@ -62,7 +61,7 @@ const pushRow = (original: HeaderItem[], rows: Col[][], dinks: Col[]) => {
   if (children.length) pushRow(children, rows, dinks);
 };
 const headerRows = computed(() => {
-  const rows: Col[][] = [];
+  const rows: HeaderItem[][] = [];
   pushRow(props.header, rows, []);
   return rows;
 });
@@ -110,45 +109,91 @@ const removedCells = computed(() => {
   });
   return cells;
 });
+
+const contentPositionClass = ref();
+const onScroll = (target: HTMLElement) => {
+  const { scrollLeft, offsetWidth, scrollWidth } = target;
+  if (offsetWidth >= scrollWidth) {
+    contentPositionClass.value = '';
+  } else {
+    contentPositionClass.value = 'g-scroll-position-';
+    if (scrollLeft > 0) {
+      if (Math.ceil(scrollLeft + offsetWidth) >= scrollWidth) {
+        contentPositionClass.value += 'left';
+      } else {
+        contentPositionClass.value += 'both';
+      }
+    } else {
+      contentPositionClass.value += 'right';
+    }
+  }
+};
+
+const tableRef = ref();
+const listeners = debounce(() => {
+  onScroll(tableRef.value);
+});
+useResizeObserver(tableRef, listeners);
 </script>
 
 <template>
-  <table :class="COMPONENT" width="100%">
-    <thead :class="headerSticky ? `${COMPONENT}-header-sticky` : ''" :style="{ top: `${headerStickyTop}px` }">
-      <tr v-for="(cols, index) in headerRows" :key="index">
-        <th
-          v-for="col in cols"
-          :key="col.key"
-          :rowspan="col.rowSpan"
-          :colspan="col.colSpan"
-          :style="{ width: col.width }"
-        >
-          {{ col.display }}
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="(dataRow, rowIndex) in data" :key="rowIndex">
-        <template v-for="(key, colIndex) in headerKeys">
-          <td
-            v-if="!removedCells.includes(`${rowIndex}-${colIndex}`)"
-            :key="key"
-            :rowspan="(dataRow[`${key}-row-span`] ?? 1) as number"
-            :colspan="(dataRow[`${key}-col-span`] ?? 1) as number"
-          >
-            {{ dataRow[key] }}
-          </td>
-        </template>
-      </tr>
-    </tbody>
-  </table>
+  <div :class="[COMPONENT, contentPositionClass]">
+    <g-scrollbar-box ref="tableRef" @scroll="e => onScroll(e.target)">
+      <table>
+        <thead :class="headerSticky ? `${COMPONENT}-header-sticky` : ''" :style="{ top: `${headerStickyTop}px` }">
+          <tr v-for="(cols, index) in headerRows" :key="index">
+            <th
+              v-for="col in cols"
+              :key="col.key"
+              :rowspan="Number(col.rowSpan)"
+              :colspan="Number(col.colSpan)"
+              :style="{ minWidth: `${col.width}px` }"
+            >
+              <slot name="header-item" :item="col">
+                {{ col.display }}
+              </slot>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(dataRow, rowIndex) in data" :key="rowIndex">
+            <template v-for="(key, colIndex) in headerKeys">
+              <td
+                v-if="!removedCells.includes(`${rowIndex}-${colIndex}`)"
+                :key="key"
+                :rowspan="Number(dataRow[`${key}-row-span`] ?? 1)"
+                :colspan="Number(dataRow[`${key}-col-span`] ?? 1)"
+              >
+                <slot name="data-item" :item="dataRow" :data-key="key">
+                  {{ dataRow[key] }}
+                </slot>
+              </td>
+            </template>
+          </tr>
+        </tbody>
+      </table>
+    </g-scrollbar-box>
+  </div>
+  <div v-if="data.length === 0" :class="`${COMPONENT}-empty`">
+    <slot name="empty">
+      <g-icon name="empty" />
+      暂无数据
+    </slot>
+  </div>
 </template>
 
 <style lang="less">
-@COMPONENT: ~'@{prefix}-table';
+@COMPONENT: g-table;
 .@{COMPONENT} {
-  overflow-x: scroll;
+  position: relative;
+  overflow: auto;
   max-width: 100%;
+  table {
+    word-break: break-all;
+    min-width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+  }
   &-header-sticky {
     position: sticky;
   }
@@ -157,11 +202,61 @@ const removedCells = computed(() => {
   tr {
     width: 100%;
   }
+  th {
+    color: @gray-10;
+  }
+  th,
+  td {
+    border: 1px solid @gray-3;
+    padding: 8px 12px;
+  }
   tbody {
     overflow: auto;
   }
   tr:hover {
     background-color: @gray-3;
+  }
+  .shadow {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 10px;
+    height: 100%;
+    content: '';
+    pointer-events: none;
+  }
+  &.g-scroll-position-left {
+    &::before {
+      .shadow;
+      left: 0;
+      box-shadow: inset 6px 0 10px -3px rgba(0, 0, 0, 0.15);
+    }
+  }
+  &.g-scroll-position-right {
+    &::after {
+      .shadow;
+      right: 0;
+      box-shadow: inset -6px 0 10px -3px rgba(0, 0, 0, 0.15);
+    }
+  }
+  &.g-scroll-position-both {
+    .g-scroll-position-left;
+    .g-scroll-position-right;
+  }
+  &-empty {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    border: 1px solid @gray-3;
+    font-size: 14px;
+    color: gray;
+    box-sizing: border-box;
+    .g-icon {
+      font-size: 36px;
+    }
   }
 }
 </style>

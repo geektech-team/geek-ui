@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, useSlots } from 'vue';
+import { defineProps } from 'vue';
 
 const COMPONENT = 'g-timeline-item';
 defineProps<{ title: string; time: string; content: string }>();
@@ -14,16 +14,19 @@ defineProps<{ title: string; time: string; content: string }>();
     <div :class="`${COMPONENT}-content-wrap`">
       <div :class="`${COMPONENT}-content-wrap-header`">
         <div :class="`${COMPONENT}-content-wrap-header-time`">
-          <slot v-if="useSlots().time" name="time" />
-          <span v-else>{{ time }}</span>
+          <slot name="time">
+            {{ time }}
+          </slot>
         </div>
         <div :class="`${COMPONENT}-content-wrap-header-title`">
-          <slot v-if="useSlots().title" name="title" />
-          <span v-else>{{ title }}</span>
+          <slot name="title">
+            {{ title }}
+          </slot>
         </div>
       </div>
-      <slot v-if="useSlots().content" name="content" />
-      <div v-else :class="`${COMPONENT}-content-wrap-content`" v-html="content" />
+      <slot name="content">
+        <div :class="`${COMPONENT}-content-wrap-content`" v-html="content" />
+      </slot>
     </div>
   </div>
 </template>
