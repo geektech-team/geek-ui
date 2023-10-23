@@ -131,7 +131,7 @@ const onScroll = (target: HTMLElement) => {
 
 const tableRef = ref();
 const listeners = debounce(() => {
-  onScroll(tableRef.value);
+  onScroll(tableRef.value?.$el || tableRef.value);
 });
 useResizeObserver(tableRef, listeners);
 </script>
