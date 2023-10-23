@@ -32,7 +32,7 @@
     "@geektech/eslint-plugin": "^1.0.3",
     "@geektech/stylelint-config": "^0.0.6",
     "@geektech/svg2icon": "^1.0.6",
-    "@geektech/utils": "^1.0.1",
+    "@geektech/utils": "^2.0.2",
     "@vitejs/plugin-vue": "^3.0.0",
     "@vitest/coverage-c8": "^0.31.1",
     "@vitest/ui": "^0.31.1",
