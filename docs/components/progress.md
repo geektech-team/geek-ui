@@ -6,7 +6,7 @@ import { GRow } from '../../src/components/row'
 import { GCol } from '../../src/components/col'
 </script>
 
-## line
+## Line
 
 <g-progress type="line" :percent="0.6"/>
 
@@ -14,14 +14,14 @@ import { GCol } from '../../src/components/col'
 <g-progress type="line" :percent="0.6" />
 ```
 
-## circle
+## Circle
 
 <g-row>
   <g-col :span="8">
     <g-progress type="circle" :percent="0.6"/>
   </g-col>
   <g-col :span="8">
-    <g-progress type="circle" :percent="0.6" color="red" stroke-width="5"/>
+    <g-progress type="circle" :percent="0.8" color="red" stroke-width="5"/>
   </g-col>
   <g-col :span="8">
     <g-progress type="circle" :percent="0.5"/>
@@ -34,10 +34,18 @@ import { GCol } from '../../src/components/col'
     <g-progress type="circle" :percent="0.6" />
   </g-col>
   <g-col :span="8">
-    <g-progress type="circle" :percent="0.6" color="red" stroke-width="5" />
+    <g-progress type="circle" :percent="0.8" color="red" stroke-width="5" />
   </g-col>
   <g-col :span="8">
     <g-progress type="circle" :percent="0.5" />
   </g-col>
 </g-row>
+```
+
+## Water
+
+<g-progress type="water" :percent="0.5"/>
+
+```html
+<g-progress type="water" :percent="0.5"/>
 ```

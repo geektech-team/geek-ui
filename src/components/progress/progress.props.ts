@@ -38,7 +38,7 @@ export const progressProps = {
    * @en The width of the progress bar
    */
   width: {
-    type: [Number, String],
+    type: Number,
   },
   /**
    * @zh 进度条的颜色

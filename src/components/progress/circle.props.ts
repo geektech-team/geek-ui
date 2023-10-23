@@ -21,10 +21,10 @@ export const circleProps = {
    */
   strokeWidth: {
     type: Number,
-    default: 2,
+    default: 3,
   },
   /**
-   * @zh 进度条的长度
+   * @zh 圆形进度条的宽
    * @en The width of the progress bar
    */
   width: {
