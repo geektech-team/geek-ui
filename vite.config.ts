@@ -35,6 +35,7 @@ export default defineConfig({
         loading: './src/components/loading',
         progress: './src/components/progress',
         table: './src/components/table',
+        'v-loading': './src/directives/loading',
       },
       // name: 'index',
       // fileName: 'index',

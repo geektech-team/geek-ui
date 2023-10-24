@@ -4,6 +4,7 @@ import useResizeObserver from '../../hooks/use-resize-observer';
 import { GScrollbarBox } from '../scrollbar-box';
 import { debounce } from '@geektech/utils';
 import { GIcon } from '../icon';
+import { loading as vLoading } from '../../directives';
 
 const COMPONENT = 'g-table';
 interface HeaderItem {
@@ -19,6 +20,7 @@ interface Props {
   header: HeaderItem[];
   data: Record<string, unknown>[];
   headerSticky?: boolean;
+  loading?: boolean;
   headerStickyTop?: number;
 }
 
@@ -137,48 +139,50 @@ useResizeObserver(tableRef, listeners);
 </script>
 
 <template>
-  <div :class="[COMPONENT, contentPositionClass]">
-    <g-scrollbar-box ref="tableRef" @scroll="e => onScroll(e.target)">
-      <table>
-        <thead :class="headerSticky ? `${COMPONENT}-header-sticky` : ''" :style="{ top: `${headerStickyTop}px` }">
-          <tr v-for="(cols, index) in headerRows" :key="index">
-            <th
-              v-for="col in cols"
-              :key="col.key"
-              :rowspan="Number(col.rowSpan)"
-              :colspan="Number(col.colSpan)"
-              :style="{ minWidth: `${col.width}px` }"
-            >
-              <slot name="header-item" :item="col">
-                {{ col.display }}
-              </slot>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(dataRow, rowIndex) in data" :key="rowIndex">
-            <template v-for="(key, colIndex) in headerKeys">
-              <td
-                v-if="!removedCells.includes(`${rowIndex}-${colIndex}`)"
-                :key="key"
-                :rowspan="Number(dataRow[`${key}-row-span`] ?? 1)"
-                :colspan="Number(dataRow[`${key}-col-span`] ?? 1)"
+  <div v-loading="loading" :class="COMPONENT">
+    <div :class="contentPositionClass">
+      <g-scrollbar-box ref="tableRef" @scroll="e => onScroll(e.target)">
+        <table>
+          <thead :class="headerSticky ? `${COMPONENT}-header-sticky` : ''" :style="{ top: `${headerStickyTop}px` }">
+            <tr v-for="(cols, index) in headerRows" :key="index">
+              <th
+                v-for="col in cols"
+                :key="col.key"
+                :rowspan="Number(col.rowSpan)"
+                :colspan="Number(col.colSpan)"
+                :style="{ minWidth: `${col.width}px` }"
               >
-                <slot name="data-item" :item="dataRow" :data-key="key">
-                  {{ dataRow[key] }}
+                <slot name="header-item" :item="col">
+                  {{ col.display }}
                 </slot>
-              </td>
-            </template>
-          </tr>
-        </tbody>
-      </table>
-    </g-scrollbar-box>
-  </div>
-  <div v-if="data.length === 0" :class="`${COMPONENT}-empty`">
-    <slot name="empty">
-      <g-icon name="empty" />
-      暂无数据
-    </slot>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(dataRow, rowIndex) in data" :key="rowIndex">
+              <template v-for="(key, colIndex) in headerKeys">
+                <td
+                  v-if="!removedCells.includes(`${rowIndex}-${colIndex}`)"
+                  :key="key"
+                  :rowspan="Number(dataRow[`${key}-row-span`] ?? 1)"
+                  :colspan="Number(dataRow[`${key}-col-span`] ?? 1)"
+                >
+                  <slot name="data-item" :item="dataRow" :data-key="key">
+                    {{ dataRow[key] }}
+                  </slot>
+                </td>
+              </template>
+            </tr>
+          </tbody>
+        </table>
+      </g-scrollbar-box>
+    </div>
+    <div v-if="data.length === 0" :class="`${COMPONENT}-empty`">
+      <slot name="empty">
+        <g-icon name="empty" />
+        暂无数据
+      </slot>
+    </div>
   </div>
 </template>
 
@@ -187,9 +191,10 @@ useResizeObserver(tableRef, listeners);
 .@{COMPONENT} {
   position: relative;
   overflow: auto;
-  max-width: 100%;
+  width: 100%;
   table {
     word-break: break-all;
+    white-space: break-spaces;
     min-width: 100%;
     margin: 0;
     border-collapse: collapse;
@@ -225,21 +230,21 @@ useResizeObserver(tableRef, listeners);
     content: '';
     pointer-events: none;
   }
-  &.g-scroll-position-left {
+  .g-scroll-position-left {
     &::before {
       .shadow;
       left: 0;
       box-shadow: inset 6px 0 10px -3px rgba(0, 0, 0, 0.15);
     }
   }
-  &.g-scroll-position-right {
+  .g-scroll-position-right {
     &::after {
       .shadow;
       right: 0;
       box-shadow: inset -6px 0 10px -3px rgba(0, 0, 0, 0.15);
     }
   }
-  &.g-scroll-position-both {
+  .g-scroll-position-both {
     .g-scroll-position-left;
     .g-scroll-position-right;
   }

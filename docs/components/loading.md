@@ -6,7 +6,9 @@
 import GLoading from '../../src/components/loading/loading.vue'
 </script>
 
-<g-loading/>
+<div style="position: relative; height: 100px;">
+  <g-loading/>
+</div>
 
 ## Code
 

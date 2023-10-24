@@ -13,6 +13,7 @@ import { GTimeline, GTimelineItem } from './components/timeline';
 import { GLoading } from './components/loading';
 import { GProgress } from './components/progress';
 import { GTable } from './components/table';
+import { loading } from './directives/';
 
 const components = [
   GCol,
@@ -44,6 +45,7 @@ export default {
 };
 
 export {
+  // Components
   GCol,
   GRow,
   GButton,
@@ -60,4 +62,6 @@ export {
   GLoading,
   GProgress,
   GTable,
+  // Directives
+  loading,
 };
