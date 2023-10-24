@@ -50,7 +50,7 @@ const data = [{
 <script setup>
   import { GTable } from '../../src/components/table/index';
   const header = [
-    { key: 'name', display: 'Name', width: 300, },
+    { key: 'name', display: 'Name', width: 300 },
     {
       key: 'configuration',
       display: 'Configuration',
@@ -109,55 +109,23 @@ const data = [{
 
 ```html
 <g-table :header="header" :data="data">
-  <template #header-item="{item}">
-    {{item.display}}
-  </template>
-  <template #data-item="{item, dataKey}">
-    {{item[dataKey]}}
-  </template>
+  <template #header-item="{item}"> {{item.display}} </template>
+  <template #data-item="{item, dataKey}"> {{item[dataKey]}} </template>
 </g-table>
 ```
 
 ## Empty Data
 
-<g-table :header="header" :data="[]">
-  <template #header-item="{item}">
-    {{item.display}}
-  </template>
-  <template #data-item="{item, dataKey}">
-    {{item[dataKey]}}
-  </template>
-</g-table>
+<g-table :header="header" :data="[]"/>
 
 ```html
-<g-table :header="header" :data="[]">
-  <template #header-item="{item}">
-    {{item.display}}
-  </template>
-  <template #data-item="{item, dataKey}">
-    {{item[dataKey]}}
-  </template>
-</g-table>
+<g-table :header="header" :data="[]"/>
 ```
 
 ## Loading
 
-<g-table :header="header" :data="[]" :loading="true">
-  <template #header-item="{item}">
-    {{item.display}}
-  </template>
-  <template #data-item="{item, dataKey}">
-    {{item[dataKey]}}
-  </template>
-</g-table>
+<g-table :header="header" :data="[]" :loading="true"/>
 
 ```html
-<g-table :header="header" :data="[]" :loading="true">
-  <template #header-item="{item}">
-    {{item.display}}
-  </template>
-  <template #data-item="{item, dataKey}">
-    {{item[dataKey]}}
-  </template>
-</g-table>
+<g-table :header="header" :data="[]" :loading="true" />
 ```
