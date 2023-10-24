@@ -139,3 +139,25 @@ const data = [{
   </template>
 </g-table>
 ```
+
+## Loading
+
+<g-table :header="header" :data="[]" :loading="true">
+  <template #header-item="{item}">
+    {{item.display}}
+  </template>
+  <template #data-item="{item, dataKey}">
+    {{item[dataKey]}}
+  </template>
+</g-table>
+
+```html
+<g-table :header="header" :data="[]" :loading="true">
+  <template #header-item="{item}">
+    {{item.display}}
+  </template>
+  <template #data-item="{item, dataKey}">
+    {{item[dataKey]}}
+  </template>
+</g-table>
+```

@@ -4,7 +4,7 @@ import useResizeObserver from '../../hooks/use-resize-observer';
 import { GScrollbarBox } from '../scrollbar-box';
 import { debounce } from '@geektech/utils';
 import { GIcon } from '../icon';
-import { loading as vLoading } from '../../directives';
+import { GLoading } from '../loading';
 
 const COMPONENT = 'g-table';
 interface HeaderItem {
@@ -20,8 +20,8 @@ interface Props {
   header: HeaderItem[];
   data: Record<string, unknown>[];
   headerSticky?: boolean;
-  loading?: boolean;
   headerStickyTop?: number;
+  loading?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -29,6 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
   data: () => [],
   headerSticky: true,
   headerStickyTop: 0,
+  loading: false,
 });
 
 const pushRow = (original: HeaderItem[], rows: HeaderItem[][], dinks: HeaderItem[]) => {
@@ -139,7 +140,7 @@ useResizeObserver(tableRef, listeners);
 </script>
 
 <template>
-  <div v-loading="loading" :class="COMPONENT">
+  <g-loading :class="COMPONENT" :loading="loading">
     <div :class="contentPositionClass">
       <g-scrollbar-box ref="tableRef" @scroll="e => onScroll(e.target)">
         <table>
@@ -183,7 +184,7 @@ useResizeObserver(tableRef, listeners);
         暂无数据
       </slot>
     </div>
-  </div>
+  </g-loading>
 </template>
 
 <style lang="less">
