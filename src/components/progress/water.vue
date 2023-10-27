@@ -18,7 +18,7 @@ withDefaults(defineProps<{ percent: number; width: number }>(), {
         <path d="M 0 40 Q 75 20,150 40 T 300 40 T 450 40 T 600 40 L 600 140 L 0 140 L 0 70Z" />
       </svg>
     </div>
-    <div class="percent">
+    <div :class="`${COMPONENT}-text`">
       <slot name="text">
         {{ percent * 100 }}%
       </slot>
@@ -84,7 +84,7 @@ withDefaults(defineProps<{ percent: number; width: number }>(), {
       transform: translate(-50%, 0);
     }
   }
-  .percent {
+  &-text {
     position: absolute;
     font-size: 30px;
     color: #fff;

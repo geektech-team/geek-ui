@@ -10,20 +10,6 @@ const mergedWidth = computed(() => {
 const radius = computed(() => (mergedWidth.value - props.strokeWidth) / 2); // 半径
 const perimeter = computed(() => Math.PI * 2 * radius.value); // 周长
 const center = computed(() => mergedWidth.value / 2);
-const beginCircle = computed(() => {
-  return {
-    cx: radius.value * 2 + props.strokeWidth / 2,
-    cy: radius.value + props.strokeWidth / 2,
-    r: props.strokeWidth / 2,
-  };
-});
-const endCircle = computed(() => {
-  return {
-    cx: radius.value + radius.value * Math.cos(props.percent * 2 * Math.PI) + props.strokeWidth / 2,
-    cy: radius.value + radius.value * Math.sin(props.percent * 2 * Math.PI) + props.strokeWidth / 2,
-    r: props.strokeWidth / 2,
-  };
-});
 </script>
 
 <template>
@@ -36,9 +22,7 @@ const endCircle = computed(() => {
         :cy="center"
         :r="radius"
         :stroke-width="strokeWidth"
-        :style="{
-          stroke: trackColor,
-        }"
+        :stroke="trackColor"
       />
       <circle
         :class="`${COMPONENT}-svg-bar`"
@@ -47,29 +31,17 @@ const endCircle = computed(() => {
         :cy="center"
         :r="radius"
         :stroke-width="strokeWidth"
-        :style="{
-          stroke: color ?? 'var(--primary-color)',
-          strokeDasharray: perimeter,
-          strokeDashoffset: (percent >= 1 ? 0 : 1 - percent) * perimeter,
-        }"
-      />
-      <circle
-        :class="`${COMPONENT}-svg-point`"
-        :cx="beginCircle.cx"
-        :cy="beginCircle.cy"
-        :r="beginCircle.r"
-        stroke="none"
-        :fill="color ?? 'var(--primary-color)'"
-      />
-      <circle
-        :class="`${COMPONENT}-svg-point`"
-        :cx="endCircle.cx"
-        :cy="endCircle.cy"
-        :r="endCircle.r"
-        stroke="none"
-        :fill="color ?? 'var(--primary-color)'"
+        stroke-linecap="round"
+        :stroke="color ?? 'var(--primary-color)'"
+        :stroke-dasharray="perimeter"
+        :stroke-dashoffset="(percent >= 1 ? 0 : 1 - percent) * perimeter"
       />
     </svg>
+    <div :class="`${COMPONENT}-text`">
+      <slot name="text">
+        {{ percent * 100 }}%
+      </slot>
+    </div>
   </div>
 </template>
 
@@ -77,6 +49,22 @@ const endCircle = computed(() => {
 @COMPONENT: g-progress-circle;
 .@{COMPONENT} {
   stroke: @gray-4;
-  transform: rotate(-90deg);
+  position: relative;
+  &-svg {
+    transform: rotate(-90deg);
+  }
+  &-svg-bar {
+    transition: stroke-dashoffset 0.6s @transition-timing-function-decelerate;
+  }
+  &-text {
+    position: absolute;
+    font-size: 30px;
+    color: #fff;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    text-shadow: 1px 1px 4px @dark-gray-6;
+  }
 }
 </style>
