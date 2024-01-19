@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineEmits, computed, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { paginationProps } from './pagination.props';
 import { paginationEmits } from './pagination.emits';
 import GIcon from '../icon/icon.vue';

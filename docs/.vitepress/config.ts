@@ -31,7 +31,10 @@ export default defineConfig({
           },
           {
             text: 'Navigation',
-            items: [{ text: 'Pagination', link: '/components/pagination' }],
+            items: [
+              { text: 'Pagination', link: '/components/pagination' },
+              { text: 'Anchor', link: '/components/anchor' },
+            ],
           },
           {
             text: 'Statastic/Display',

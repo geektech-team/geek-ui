@@ -4,17 +4,7 @@ import { carouselInjectionKey } from './context';
 import { AnimationName } from './carousel.type';
 
 const COMPONENT = 'g-carousel-item';
-const context = inject<{
-  components?: number[];
-  currentIndex?: number;
-  previousIndex?: number;
-  nextIndex?: number;
-  slideDirection?: string;
-  animationName?: AnimationName;
-  addComponent?:(uid: number) => void;
-  transitionTimingFunction?: string;
-  animationInterval?: number;
-    }>(carouselInjectionKey, {});
+const context = inject(carouselInjectionKey, {});
 const instance = getCurrentInstance();
 const index = computed(() => {
   return context.components?.indexOf(instance?.uid ?? -1) ?? -1;
