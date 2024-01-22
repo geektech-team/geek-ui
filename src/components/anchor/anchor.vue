@@ -144,9 +144,7 @@ provide(anchorInjectionKey, anchorContext);
 
 <template>
   <div ref="anchorRef" :class="COMPONENT">
-    <div :class="`${COMPONENT}-list`">
-      <slot />
-    </div>
+    <slot />
   </div>
 </template>
 
