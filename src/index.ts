@@ -13,6 +13,7 @@ import { GTimeline, GTimelineItem } from './components/timeline';
 import { GLoading } from './components/loading';
 import { GProgress } from './components/progress';
 import { GTable } from './components/table';
+import { GAnchor } from './components/anchor';
 
 const components = [
   GCol,
@@ -31,6 +32,7 @@ const components = [
   GLoading,
   GProgress,
   GTable,
+  GAnchor,
 ];
 
 const install = (app: App) => {
@@ -61,4 +63,5 @@ export {
   GLoading,
   GProgress,
   GTable,
+  GAnchor,
 };

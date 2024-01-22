@@ -35,6 +35,7 @@ export default defineConfig({
         loading: './src/components/loading',
         progress: './src/components/progress',
         table: './src/components/table',
+        anchor: './src/components/anchor',
       },
       // name: 'index',
       // fileName: 'index',
