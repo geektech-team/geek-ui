@@ -1,6 +1,6 @@
-import { __publicField } from './chunk-2B2CG5KL.js';
+import { __publicField } from './chunk-F3FYYIAV.js';
 
-// node_modules/.pnpm/@geektech+utils@1.0.4/node_modules/@geektech/utils/dist/index.es.js
+// node_modules/.pnpm/@geektech+utils@2.3.1/node_modules/@geektech/utils/es/type.js
 var getType = obj => Object.prototype.toString.call(obj).slice(8, -1);
 function isArray(obj) {
   return getType(obj) === 'Array';
@@ -32,12 +32,16 @@ function isFunction(obj) {
 function isEmptyObject(obj) {
   return isObject(obj) && Object.keys(obj).length === 0;
 }
+
+// node_modules/.pnpm/@geektech+utils@2.3.1/node_modules/@geektech/utils/es/validate-7008d2c6.js
 var FUNC_ERROR_TEXT = 'Expected a function';
 var ifNotFunction = fn => {
   if (!isFunction(fn)) {
     throw new TypeError(FUNC_ERROR_TEXT);
   }
 };
+
+// node_modules/.pnpm/@geektech+utils@2.3.1/node_modules/@geektech/utils/es/debounce.js
 function debounce(callback, delay = 60) {
   ifNotFunction(callback);
   let timer;
@@ -50,6 +54,8 @@ function debounce(callback, delay = 60) {
     }, delay);
   };
 }
+
+// node_modules/.pnpm/@geektech+utils@2.3.1/node_modules/@geektech/utils/es/throttle.js
 function throttle(callback, delay = 60) {
   ifNotFunction(callback);
   let flag = true;
@@ -65,6 +71,8 @@ function throttle(callback, delay = 60) {
     return void 0;
   };
 }
+
+// node_modules/.pnpm/@geektech+utils@2.3.1/node_modules/@geektech/utils/es/deep-clone.js
 var find = (uniqueList, source) => {
   for (var i = 0; i < uniqueList.length; i++) {
     if (uniqueList[i].source === source) {
@@ -87,7 +95,13 @@ var deepClone = source => {
       for (let key in source2) {
         let prop = source2[key];
         if (prop && typeof prop === 'object') {
-          target[key] = _deepClone(prop);
+          if (prop instanceof Date) {
+            target[key] = new Date(prop.getTime());
+          } else if (prop instanceof RegExp) {
+            target[key] = new RegExp(prop.source, prop.flags);
+          } else {
+            target[key] = _deepClone(prop);
+          }
         } else {
           target[key] = prop;
         }
@@ -96,6 +110,8 @@ var deepClone = source => {
     return target;
   })(source);
 };
+
+// node_modules/.pnpm/@geektech+utils@2.3.1/node_modules/@geektech/utils/es/time-format.js
 function timeFormat(time, format = 'yyyy-MM-dd hh:mm:ss') {
   const year = `${time.getFullYear()}`;
   let month = `${time.getMonth() + 1}`;
@@ -116,6 +132,8 @@ function timeFormat(time, format = 'yyyy-MM-dd hh:mm:ss') {
     .replace(/mm/g, minutes)
     .replace(/ss/g, seconds);
 }
+
+// node_modules/.pnpm/@geektech+utils@2.3.1/node_modules/@geektech/utils/es/memoize.js
 function memoize(callback) {
   const cache = /* @__PURE__ */ new Map();
   return function (...args) {
@@ -128,6 +146,21 @@ function memoize(callback) {
     return result;
   };
 }
+
+// node_modules/.pnpm/@geektech+utils@2.3.1/node_modules/@geektech/utils/es/copy-to-clipboard.js
+function copyToClipboard(text) {
+  const temp = document.createElement('textarea');
+  temp.value = String(text);
+  document.body.appendChild(temp);
+  temp.select();
+  if (document.execCommand) {
+    document.execCommand('copy');
+  }
+  temp.style.display = 'none';
+  document.body.removeChild(temp);
+}
+
+// node_modules/.pnpm/@geektech+utils@2.3.1/node_modules/@geektech/utils/es/enum-model.js
 var EnumModel = class {
   constructor(enums = []) {
     __publicField(this, 'enums');
@@ -153,10 +186,126 @@ var EnumModel = class {
     return this.enums.map(item => item);
   }
 };
+
+// node_modules/.pnpm/@geektech+utils@2.3.1/node_modules/@geektech/utils/es/cookie.js
+var Cookie = class {
+  constructor() {
+    __publicField(this, 'TWENTY_FOUR_HOURS', 864e5);
+    // 24小时
+    __publicField(this, 'defaultAttributes', { path: '/' });
+  }
+  get(key) {
+    const cookiePairs = document.cookie ? document.cookie.split('; ') : [];
+    const cookieStore = {};
+    cookiePairs.some(pair => {
+      const [curtKey, ...curtValue] = pair.split('=');
+      try {
+        const decodeedValue = decodeURIComponent(curtValue.join('='));
+        cookieStore[curtKey] = decodeedValue;
+      } catch (e) {}
+      return curtKey === key;
+    });
+    return key ? cookieStore[key] : null;
+  }
+  set(key, value, attributes = this.defaultAttributes) {
+    attributes = { ...this.defaultAttributes, ...attributes };
+    if (attributes.expires) {
+      if (typeof attributes.expires === 'number') {
+        attributes.expires = new Date(Date.now() + attributes.expires * this.TWENTY_FOUR_HOURS);
+        attributes.expires = attributes.expires.toUTCString();
+      }
+    }
+    const attrStr = Object.entries(attributes).reduce((prevStr, attrPair) => {
+      const [attrKey, attrValue] = attrPair;
+      if (!attrValue) return prevStr;
+      prevStr += `; ${attrKey}`;
+      if (attrValue === true) return prevStr;
+      prevStr += `=${attrValue.split('; ')[0]}`;
+      return prevStr;
+    }, '');
+    value = encodeURIComponent(value);
+    return (document.cookie = `${key}=${value}${attrStr}`);
+  }
+  /**
+   * 删除某个 Cookie
+   */
+  del(key, attributes = { path: '/' }) {
+    this.set(key, '', { ...attributes, expires: -1 });
+  }
+};
+var cookie = new Cookie();
+
+// node_modules/.pnpm/@geektech+utils@2.3.1/node_modules/@geektech/utils/es/event-bus.js
+var EventBus = class {
+  constructor() {
+    __publicField(this, 'list');
+    this.list = {};
+  }
+  on(name, fn) {
+    this.list[name] = this.list[name] || [];
+    this.list[name].push(fn);
+  }
+  emit(name, data) {
+    if (this.list[name]) {
+      this.list[name].forEach(fn => {
+        fn(data);
+      });
+    }
+  }
+  off(name) {
+    if (this.list[name]) {
+      delete this.list[name];
+    }
+  }
+};
+var eventBus = new EventBus();
+
+// node_modules/.pnpm/@geektech+utils@2.3.1/node_modules/@geektech/utils/es/index.js
+var TIME_IN_ONE_MINUTE = 6e4;
+var TIME_IN_ONE_HOUR = 60 * TIME_IN_ONE_MINUTE;
+var TIME_IN_ONE_DAY = 24 * TIME_IN_ONE_HOUR;
+var beginningOfDate = date => {
+  const result = new Date(date);
+  result.setHours(0, 0, 0, 0);
+  return result;
+};
+var endOfDate = date => {
+  const result = new Date(date);
+  result.setHours(23, 59, 59, 999);
+  return result;
+};
+var beginningOfNextDay = date => {
+  const result = new Date(date);
+  result.setHours(24, 0, 0, 0);
+  return result;
+};
+var beginningOfWeek = date => {
+  const dayInweek = date.getDay() || 7;
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate() - dayInweek + 1, 0, 0, 0);
+};
+var beginningOfMonth = date => {
+  return new Date(date.getFullYear(), date.getMonth(), 1, 0, 0, 0);
+};
+var beginningOfYear = date => {
+  return new Date(date.getFullYear(), 1, 1, 0, 0, 0);
+};
 export {
   EnumModel,
+  EventBus,
+  TIME_IN_ONE_DAY,
+  TIME_IN_ONE_HOUR,
+  TIME_IN_ONE_MINUTE,
+  beginningOfDate,
+  beginningOfMonth,
+  beginningOfNextDay,
+  beginningOfWeek,
+  beginningOfYear,
+  cookie,
+  copyToClipboard,
   debounce,
   deepClone,
+  endOfDate,
+  eventBus,
   isArray,
   isBlob,
   isEmptyObject,

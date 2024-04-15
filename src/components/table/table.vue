@@ -2,7 +2,7 @@
 import { ref, computed, withDefaults } from 'vue';
 import useResizeObserver from '../../hooks/use-resize-observer';
 import { GScrollbarBox } from '../scrollbar-box';
-import { debounce } from '@geektech/utils';
+import { debounce, deepClone } from '@geektech/utils';
 import { GIcon } from '../icon';
 import { GLoading } from '../loading';
 
@@ -65,7 +65,7 @@ const pushRow = (original: HeaderItem[], rows: HeaderItem[][], dinks: HeaderItem
 };
 const headerRows = computed(() => {
   const rows: HeaderItem[][] = [];
-  pushRow(props.header, rows, []);
+  pushRow(deepClone(props.header), rows, []);
   return rows;
 });
 

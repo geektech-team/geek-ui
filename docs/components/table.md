@@ -35,9 +35,9 @@ const data = [{
   space: '三箱',
 },
 {
-  name: '小鹏 G6',
+  name: '小米 SU7',
   powerType: 'electric',
-  function: 'SUV',
+  function: '轿车',
   space: '三箱',
 }];
 </script>
@@ -84,9 +84,9 @@ const data = [{
       space: '三箱',
     },
     {
-      name: '小鹏 G6',
+      name: '小米 SU7',
       powerType: 'electric',
-      function: 'SUV',
+      function: '轿车',
       space: '三箱',
     },
   ];
@@ -119,7 +119,7 @@ const data = [{
 <g-table :header="header" :data="[]"/>
 
 ```html
-<g-table :header="header" :data="[]"/>
+<g-table :header="header" :data="[]" />
 ```
 
 ## Loading
